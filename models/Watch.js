@@ -4,8 +4,8 @@ const mongoose = require("mongoose");
 const watchSchema = new mongoose.Schema({
     brand: { type: String, required: true }, // Brand name (e.g., Rolex, Omega)
     model: { type: String, required: true }, // Model name (e.g., Submariner, Speedmaster)
-    referenceNumber: { type: String, required: true, unique: true }, // Unique reference number
-
+    referenceNumber: { type: String, trim: true, default: null, set: v => v === "" ? null : v }, // Unique Ref Number Optional
+    
     // Movement & Caliber Details
     movement: { type: String, required: false }, // Movement type (e.g., Automatic, Quartz)
     caliberMovement: { type: String, required: false }, // Specific caliber/movement number

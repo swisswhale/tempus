@@ -7,13 +7,13 @@ const express = require("express");
 const mongoose = require('mongoose'); // require package
 const methodOverride = require("method-override"); // new
 const morgan = require("morgan"); //new
-const path = require("path");
+const path = require("path")
 
 const app = express();
 
+
 // Import watch schema
 const Watch = require("./models/Watch");
-// const watchBrands = require("./data/watchBrands") // import watch brands
 
 // Connect to MongoDB using the connection string in the .env file
 mongoose.connect(process.env.MONGODB_URI);
@@ -42,7 +42,6 @@ app.get("/new", (req, res) => {
     res.render("new.ejs");
 })
 
-// Add a new watch
 app.post("/watches", async (req, res) => {
     try {
         const newWatch = await Watch.create(req.body);
