@@ -8,8 +8,13 @@ const mongoose = require('mongoose'); // require package
 const methodOverride = require("method-override"); // new
 const morgan = require("morgan"); //new
 const path = require("path")
+const caseMaterials = require('./data/Case/case_mat'); // ✅ Import case materials
+const brands = require('./data/brands'); // ✅ Import brands
 
 const app = express();
+
+// ✅ Set EJS as the templating engine
+app.set('view engine', 'ejs');
 
 
 // Import watch schema
@@ -31,17 +36,27 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Routes
 
-// Get all watches
+// ✅ Route to render the form (Corrected version)
+app.get('/new', (req, res) => {
+    console.log("Brands:", brands);
+    console.log("Case Materials:", caseMaterials);
+  
+    res.render('new', { brands, caseMaterials }); // ✅ Pass caseMaterials & brands
+});
+
+
+// ✅ Get all watches
 app.get("/watches", async (req, res) => {
     const watches = await Watch.find();
     res.render("index.ejs", { watches });
 });
 
 // Get form to add watch
-app.get("/new", (req, res) => {
-    res.render("new.ejs");
-})
+// app.get("/new", (req, res) => {
+//    res.render("new.ejs");
+//})
 
+// ✅ Handle watch form submission
 app.post("/watches", async (req, res) => {
     try {
         const newWatch = await Watch.create(req.body);
@@ -52,10 +67,13 @@ app.post("/watches", async (req, res) => {
     }
 });
 
+// ✅ Render the homepage
 app.get("/", async (req, res) => {
     res.render("home.ejs");
-})
+});
 
-app.listen(3000, () => {
-    console.log('Listening on port 3000');
+// ✅ Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}`);
 });

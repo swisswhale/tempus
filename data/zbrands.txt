@@ -8,7 +8,7 @@
 <option value="Bulgari">Bulgari</option>
 <option value="Cartier">Cartier</option>
 <option value="Casio">Casio</option>
-<option value="Chanel">Chanel</option>
+<option valueå="Chanel">Chanel</option>
 <option value="Chopard">Chopard</option>
 <option value="Corum">Corum</option>
 <option value="De Bethune">De Bethune</option>

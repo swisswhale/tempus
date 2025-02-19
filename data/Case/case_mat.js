@@ -1,0 +1,23 @@
+module.exports = [
+  "Aluminum",
+  "Brass",
+  "Bronze",
+  "Carbon ",
+  "Ceramic ",
+  "Gold & Steel ",
+  "Gold-plated ",
+  "Palladium ",
+  "Plastic ",
+  "Platinum",
+  "Red Gold",
+  "Rose Gold",
+  "Sapphire Crystal",
+  "Silver",
+  "Steel",
+  "Tantalum",
+  "Titanium",
+  "Tungsten",
+  "White Gold",
+  "Yellow Gold",
+  "Other"
+];

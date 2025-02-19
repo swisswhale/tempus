@@ -21,7 +21,8 @@ const watchSchema = new mongoose.Schema({
     crystal: { type: String, required: false }, // Crystal type (e.g., Sapphire, Acrylic)
 
     // Dial & Aesthetics
-    dial: { type: String, required: false }, // Dial color and style
+    dialcolor: { type: String, required: false }, // Dial color and style
+    dialstyle: { type: String, required: false },
     braceletMaterial: { type: String, required: false }, // Bracelet material (e.g., Stainless Steel, Leather)
     braceletColor: { type: String, required: false }, // Bracelet color
     clasp: { type: String, required: false }, // Type of clasp (e.g., Deployant, Buckle)
