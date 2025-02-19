@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Watch</title>
+</head>
+<body>
+    <h1>Add a New Watch</h1>
+    <form action="/watches" method="POST">
+        <label for="brand">Brand:</label>
+        <input type="text" id="brand" name="brand" required>
+
+        <label for="model">Model:</label>
+        <input type="text" id="model" name="model" required>
+
+        <label for="referenceNumber">Reference Number:</label>
+        <input type="text" id="referenceNumber" name="referenceNumber" required>
+
+        <label for="purchasePrice">Purchase Price:</label>
+        <input type="number" id="purchasePrice" name="purchasePrice" required>
+
+        <label for="purchaseDate">Purchase Date:</label>
+        <input type="date" id="purchaseDate" name="purchaseDate" required>
+
+        <button type="submit">Add Watch</button>
+    </form>
+    <a href="/watches">Back to Watch List</a>
+</body>
+</html>

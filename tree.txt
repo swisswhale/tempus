@@ -30,11 +30,11 @@
     ├── about.ejs
     ├── contact.ejs
     ├── details.ejs
-    ├── form.ejs
+    ├── new.ejs
     ├── home.ejs
     ├── login.ejs
     ├── partials
-    ├── portfolio.ejs
+    ├── index.ejs
     └── register.ejs
 
 111 directories, 25 files
