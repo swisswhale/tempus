@@ -41,29 +41,27 @@
                 <option value="<%= brand %>"><%= brand %></option>
                 <% }); %>
             </select>
-            <input
-                type="text"
-                id="otherBrand"
-                name="otherBrand"
-                placeholder="Enter brand name"
-                style="display: none" />
+            <input type="text" id="otherBrand" name="otherBrand"
+                placeholder="Enter brand name" style="display: none" />
             <!--Model-->
             <label for="model">Model:</label>
             <input type="text" id="model" name="model" required />
             <!--Ref number-->
-            <label for="referenceNumber">Reference Number:</label>
-            <input type="text" id="referenceNumber" name="referenceNumber" />
+            <label for="refNumber">Reference Number:</label>
+            <input type="text" id="refNumber" name="refNumber" />
+            <!--Serial Number-->
+            <label for="serialNumber">Serial Number:</label>
+            <input type="text" id="SerialNumber" name="serialNumber" />
+
             <!--Gender-->
             <label>Gender:</label>
-            <div>
-                <input type="radio" id="mens" name="gender" value="Men's" />
-                <label for="mens">Men's</label>
-
-                <input type="radio" id="womens" name="gender" value="Women's" />
-                <label for="womens">Women's</label>
-
-                <input type="radio" id="unisex" name="gender" value="Unisex" />
-                <label for="unisex">Unisex</label>
+            <div class="radio-group">
+                <% ["Men's", "Women's", "Unisex"].forEach(gender => { %>
+                <label>
+                    <input type="radio" name="gender" value="<%= gender %>" />
+                    <%= gender %>
+                </label>
+                <% }); %>
             </div>
             <!--Serial Number-->
 
@@ -80,7 +78,7 @@
             <input type="text" id="seller" name="seller" required />
             <!--Box-->
             <label>Original Box Included?</label>
-            <div>
+            <div class="radio-group">
                 <input type="radio" id="boxYes" name="box" value="true" />
                 <label for="boxYes">Yes</label>
 
@@ -89,7 +87,7 @@
             </div>
             <!--Papers-->
             <label>Original Papers Included?</label>
-            <div>
+            <div class="radio-group">
                 <input type="radio" id="papersYes" name="papers" value="true" />
                 <label for="papersYes">Yes</label>
 
@@ -134,14 +132,10 @@
             <h2>Dial</h2>
             <!--Dial Numerals-->
             <label>Dial Style:</label>
-            <div>
+            <div class="radio-group">
                 <img src="images/dials/arabic-numerals.png" />
-                <input
-                    type="radio"
-                    id="arabic"
-                    name="dialStyle"
-                    value="Arabic Numerals"
-                    required />
+                <input type="radio" id="arabic" name="dialStyle"
+                    value="Arabic Numerals" />
                 <label for="arabic">Arabic Numerals</label>
 
                 <img src="images/dials/gemstones.png" />
@@ -154,18 +148,12 @@
                 <label for="lines">Lines</label>
 
                 <img src="images/dials/no-numerals.png" />
-                <input
-                    type="radio"
-                    id="noNumerals"
-                    name="dialStyle"
+                <input type="radio" id="noNumerals" name="dialStyle"
                     value="No Numerals" />
                 <label for="noNumerals">No Numerals</label>
 
                 <img src="images/dials/roman-numerals.png" />
-                <input
-                    type="radio"
-                    id="roman"
-                    name="dialStyle"
+                <input type="radio" id="roman" name="dialStyle"
                     value="Roman Numerals" />
                 <label for="roman">Roman Numerals</label>
 
@@ -189,7 +177,6 @@
             <select name="braceletMaterial" id="braceletMaterial">
                 <option value selected disabled>-- Select Bracelet Material
                     --</option>
-                <!--Keeps first option in data set from defaulting-->
                 <% braceletMaterial.forEach(material => { %>
                 <option value="<%= material %>"><%= material %></option>
                 <% }); %>
@@ -199,14 +186,41 @@
             <select name="braceletColor" id="braceletColor">
                 <option value selected disabled>-- Select Bracelet Color
                     --</option>
-                <!--Keeps first option in data set from defaulting-->
                 <% braceletColor.forEach(color => { %>
                 <option value="<%= color %>"><%= color %></option>
                 <% }); %>
             </select>
 
             <h2>Movement</h2>
+            <div class="radio-group">
+                <% movement.forEach(movement => { %>
+                <label>
+                    <input type="radio" name="movement" value="<%= movement %>">
+                    <%= movement %>
+                </label>
+                <% }); %>
+            </div>
             <h2>Function</h2>
+            <div class="checkbox-group">
+                <% watchFunctions.forEach(func => { %>
+                <label>
+                    <input type="checkbox" name="watchFunctions[]"
+                        value="<%= func %>">
+                    <%= func %>
+                </label>
+                <% }); %>
+            </div>
+
+            <h2>Other</h2>
+            <div class="checkbox-group">
+                <% specialFeatures.forEach(feature => { %>
+                <label>
+                    <input type="checkbox" name="specialFeatures[]"
+                        value="<%= feature %>">
+                    <%= feature %>
+                </label>
+                <% }); %>
+            </div>
 
             <h2>Notes</h2>
 

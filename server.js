@@ -10,13 +10,17 @@ const morgan = require("morgan"); //new
 const path = require("path")
 
 // import data sets
-const caseMaterial = require('./data/Case/case_mat'); // ✅ Import case materials
-const brands = require('./data/brands'); // ✅ Import brands
-const crystalMaterial = require('./data/case/crystal_mat'); // Import Crystal materials
+const caseMaterial = require('./data/Case/case_mat'); // import case materials
+const brands = require('./data/basics/brands');
+const gender = require('./data/basics/gender')
+const crystalMaterial = require('./data/case/crystal_mat');
 const bezelMaterial = require('./data/case/bezel_mat')
 const dialColor = require('./data/Dial/color')
 const braceletMaterial = require('./data/Strap/strap_mat')
 const braceletColor = require('./data/Strap/color')
+const movement = require('./data/movement/movement')
+const watchFunctions = require('./data/movement/functions')
+const specialFeatures = require('./data/other')
 
 const app = express();
 
@@ -53,7 +57,11 @@ app.get('/new', (req, res) => {
     console.log("Bracelet Material:", braceletMaterial);
     console.log("Bracelet Color:", braceletColor);
 
-    res.render('new', { brands, caseMaterial, crystalMaterial, bezelMaterial, dialColor, braceletMaterial, braceletColor }); // ✅ Pass caseMaterials & brands
+    res.render('new', {
+        brands, gender, caseMaterial, crystalMaterial, bezelMaterial,
+        dialColor, braceletMaterial, braceletColor, movement, watchFunctions,
+        specialFeatures
+    }); // pass datasets
 });
 
 // ✅ Get all watches

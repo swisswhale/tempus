@@ -1,10 +1,12 @@
 const mongoose = require("mongoose");
+const specialFeatures = require("../data/other");
 
 // Watch Schema
 const watchSchema = new mongoose.Schema({
     brand: { type: String, required: true }, // Brand name (e.g., Rolex, Omega)
     model: { type: String, required: true }, // Model name (e.g., Submariner, Speedmaster)
-    referenceNumber: { type: String, required: false, unique: false, sparse: true }, // Unique Ref Number Optional
+    refNumber: { type: String, required: false, unique: false, sparse: true },
+    serialNumber: { type: String, required: false, unique: true }, // Unique Ref Number Optional
     
     // Movement & Caliber Details
     movement: { type: String, required: false }, // Movement type (e.g., Automatic, Quartz)
@@ -48,8 +50,8 @@ const watchSchema = new mongoose.Schema({
     // Additional Features & Metadata
     box: { type: Boolean, default: false }, // Whether the watch includes original box & papers
     papers: { type: Boolean, default: false }, // Whether the watch includes original box & papers
-    functions: [{ type: String }], // List of functions (e.g., Chronograph, GMT)
-    other: { type: String, required: false }, // Miscellaneous additional information
+    watchFunctions: [{ type: String }], // List of functions (e.g., Chronograph, GMT)
+    specialFeatures: { type: String, required: false }, // Miscellaneous additional information
     images: [{ type: String }], // Array of image URLs (e.g., Cloudinary/AWS links)
     createdAt: { type: Date, default: Date.now }, // Timestamp for when the watch was added
 });
