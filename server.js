@@ -8,16 +8,20 @@ const mongoose = require('mongoose'); // require package
 const methodOverride = require("method-override"); // new
 const morgan = require("morgan"); //new
 const path = require("path")
+
+// import data sets
 const caseMaterial = require('./data/Case/case_mat'); // ✅ Import case materials
 const brands = require('./data/brands'); // ✅ Import brands
 const crystalMaterial = require('./data/case/crystal_mat'); // Import Crystal materials
 const bezelMaterial = require('./data/case/bezel_mat')
+const dialColor = require('./data/Dial/color')
+const braceletMaterial = require('./data/Strap/strap_mat')
+const braceletColor = require('./data/Strap/color')
 
 const app = express();
 
 // ✅ Set EJS as the templating engine
 app.set('view engine', 'ejs');
-
 
 // Import watch schema
 const Watch = require("./models/Watch");
@@ -36,6 +40,7 @@ app.use(morgan("dev")); //new
 
 app.use(express.static(path.join(__dirname, "public")));
 
+
 // Routes
 
 // ✅ Route to render the form (Corrected version)
@@ -43,10 +48,13 @@ app.get('/new', (req, res) => {
     console.log("Brands:", brands);
     console.log("Case Material:", caseMaterial);
     console.log("Crystal Material:", crystalMaterial);
-  
-    res.render('new', { brands, caseMaterial, crystalMaterial, bezelMaterial }); // ✅ Pass caseMaterials & brands
-});
+    console.log("Bezel Material:", bezelMaterial);
+    console.log("Dial Color:", dialColor);
+    console.log("Bracelet Material:", braceletMaterial);
+    console.log("Bracelet Color:", braceletColor);
 
+    res.render('new', { brands, caseMaterial, crystalMaterial, bezelMaterial, dialColor, braceletMaterial, braceletColor }); // ✅ Pass caseMaterials & brands
+});
 
 // ✅ Get all watches
 app.get("/watches", async (req, res) => {

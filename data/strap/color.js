@@ -1,0 +1,21 @@
+module.exports = [
+    "Beige",
+    "Black",
+    "Blue",
+    "Bordeaux",
+    "Bronze",
+    "Brown",
+    "Gold",
+    "Gold & Steel",
+    "Green",
+    "Grey",
+    "Orange",
+    "Pink",
+    "Purple",
+    "Red",
+    "Silver",
+    "Steel",
+    "White",
+    "Yellow",
+    "Other"
+];

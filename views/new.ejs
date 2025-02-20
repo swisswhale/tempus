@@ -1,34 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Add New Watch</title>
 
         <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const brandSelect = document.getElementById("brand");
-            const otherBrandField = document.getElementById("otherBrand");
+      document.addEventListener("DOMContentLoaded", function () {
+        const brandSelect = document.getElementById("brand");
+        const otherBrandField = document.getElementById("otherBrand");
 
-            function toggleOtherBrandField() {
-                if (brandSelect.value === "Other") {
-                    otherBrandField.style.display = "block";
-                    otherBrandField.setAttribute("required", "required");
-                } else {
-                    otherBrandField.style.display = "none";
-                    otherBrandField.removeAttribute("required");
-                }
-            }
+        function toggleOtherBrandField() {
+          if (brandSelect.value === "Other") {
+            otherBrandField.style.display = "block";
+            otherBrandField.setAttribute("required", "required");
+          } else {
+            otherBrandField.style.display = "none";
+            otherBrandField.removeAttribute("required");
+          }
+        }
 
-            brandSelect.addEventListener("change", toggleOtherBrandField);
-            toggleOtherBrandField();
-        });
+        brandSelect.addEventListener("change", toggleOtherBrandField);
+        toggleOtherBrandField();
+      });
     </script>
+
+        <link rel="stylesheet" href="/css/new.css" />
+
     </head>
     <body>
         <h1>Add a New Watch</h1>
 
-        <!-- ✅ Keep only one form -->
         <form action="/watches" method="POST">
 
             <h2>Basics</h2>
@@ -39,24 +41,28 @@
                 <option value="<%= brand %>"><%= brand %></option>
                 <% }); %>
             </select>
-            <input type="text" id="otherBrand" name="otherBrand"
-                placeholder="Enter brand name" style="display: none;">
+            <input
+                type="text"
+                id="otherBrand"
+                name="otherBrand"
+                placeholder="Enter brand name"
+                style="display: none" />
             <!--Model-->
             <label for="model">Model:</label>
-            <input type="text" id="model" name="model" required>
+            <input type="text" id="model" name="model" required />
             <!--Ref number-->
             <label for="referenceNumber">Reference Number:</label>
-            <input type="text" id="referenceNumber" name="referenceNumber">
+            <input type="text" id="referenceNumber" name="referenceNumber" />
             <!--Gender-->
             <label>Gender:</label>
             <div>
-                <input type="radio" id="mens" name="gender" value="Men's">
+                <input type="radio" id="mens" name="gender" value="Men's" />
                 <label for="mens">Men's</label>
 
-                <input type="radio" id="womens" name="gender" value="Women's">
+                <input type="radio" id="womens" name="gender" value="Women's" />
                 <label for="womens">Women's</label>
 
-                <input type="radio" id="unisex" name="gender" value="Unisex">
+                <input type="radio" id="unisex" name="gender" value="Unisex" />
                 <label for="unisex">Unisex</label>
             </div>
             <!--Serial Number-->
@@ -65,34 +71,34 @@
             <!-- Purchase Price-->
             <label for="purchasePrice">Purchase Price:</label>
             <input type="number" id="purchasePrice" name="purchasePrice"
-                required>
+                required />
             <!--Purchase Date-->
             <label for="purchaseDate">Purchase Date:</label>
-            <input type="date" id="purchaseDate" name="purchaseDate" required>
+            <input type="date" id="purchaseDate" name="purchaseDate" required />
             <!--Seller-->
             <label for="seller">Seller:</label>
-            <input type="text" id="seller" name="seller" required>
+            <input type="text" id="seller" name="seller" required />
             <!--Box-->
             <label>Original Box Included?</label>
             <div>
-                <input type="radio" id="boxYes" name="box" value="true">
+                <input type="radio" id="boxYes" name="box" value="true" />
                 <label for="boxYes">Yes</label>
 
-                <input type="radio" id="boxNo" name="box" value="false">
+                <input type="radio" id="boxNo" name="box" value="false" />
                 <label for="boxNo">No</label>
             </div>
             <!--Papers-->
             <label>Original Papers Included?</label>
             <div>
-                <input type="radio" id="papersYes" name="papers" value="true">
+                <input type="radio" id="papersYes" name="papers" value="true" />
                 <label for="papersYes">Yes</label>
 
-                <input type="radio" id="papersNo" name="papers" value="false">
+                <input type="radio" id="papersNo" name="papers" value="false" />
                 <label for="papersNo">No</label>
             </div>
 
             <h2>Case</h2>
-<!--Case Material DROPDOWN-->
+            <!--Case Material DROPDOWN-->
             <label for="caseMaterial">Case Material:</label>
             <select name="caseMaterial" id="caseMaterial">
                 <% caseMaterial.forEach(material => { %>
@@ -105,26 +111,100 @@
                 <% bezelMaterial.forEach(material => { %>
                 <option value="<%= material %>"><%= material %></option>
                 <% }); %>
-                </select>
+            </select>
             <!--Case Diameter-->
-            <label for = "caseDiameter">Case Diameter (mm):</label>
-            <input type="number" id="caseDiameter" name="caseDiameter" vale="mm">
+            <label for="caseDiameter">Case Diameter (mm):</label>
+            <input type="number" id="caseDiameter" name="caseDiameter"
+                vale="mm" />
             <!--Crystal DROPWON-->
-            <label for = "crystalMaterial">Crystal Material:</label>
+            <label for="crystalMaterial">Crystal Material:</label>
             <select name="crystalMaterial" id="crystalMaterial">
                 <% crystalMaterial.forEach(material => { %>
                 <option value="<%= material %>"><%= material %></option>
                 <% }); %>
             </select>
             <!--Water Resistance-->
-            <label for = "waterResistance">Water Resistance (ATM):</label>
-            <input type="number" id="waterResistance" name="waterResistance" vale="ATM">
+            <label for="waterResistance">Water Resistance (ATM):</label>
+            <input
+                type="number"
+                id="waterResistance"
+                name="waterResistance"
+                vale="ATM" />
 
             <h2>Dial</h2>
             <!--Dial Numerals-->
+            <label>Dial Style:</label>
+            <div>
+                <img src="images/dials/arabic-numerals.png" />
+                <input
+                    type="radio"
+                    id="arabic"
+                    name="dialStyle"
+                    value="Arabic Numerals"
+                    required />
+                <label for="arabic">Arabic Numerals</label>
+
+                <img src="images/dials/gemstones.png" />
+                <input type="radio" id="gemstones" name="dialStyle"
+                    value="Gemstones" />
+                <label for="gemstones">Gemstones</label>
+
+                <img src="images/dials/lines.png" />
+                <input type="radio" id="lines" name="dialStyle" value="Lines" />
+                <label for="lines">Lines</label>
+
+                <img src="images/dials/no-numerals.png" />
+                <input
+                    type="radio"
+                    id="noNumerals"
+                    name="dialStyle"
+                    value="No Numerals" />
+                <label for="noNumerals">No Numerals</label>
+
+                <img src="images/dials/roman-numerals.png" />
+                <input
+                    type="radio"
+                    id="roman"
+                    name="dialStyle"
+                    value="Roman Numerals" />
+                <label for="roman">Roman Numerals</label>
+
+                <img src="images/dials/other.png" />
+                <input type="radio" id="other" name="dialStyle" value="Other" />
+                <label for="other">Other</label>
+            </div>
             <!--Dial Color-->
+            <label for="dialColor">Dial Color/Finish:</label>
+            <select name="dialColor" id="dialColor">
+                <option value selected disabled>-- Select a Dial Color
+                    --</option>
+                <!--Keeps first option in data set from defaulting-->
+                <% dialColor.forEach(color => { %>
+                <option value="<%= color %>"><%= color %></option>
+                <% }); %>
+            </select>
 
             <h2>Strap/Bracelet</h2>
+            <!--Bracelet Material-->
+            <select name="braceletMaterial" id="braceletMaterial">
+                <option value selected disabled>-- Select Bracelet Material
+                    --</option>
+                <!--Keeps first option in data set from defaulting-->
+                <% braceletMaterial.forEach(material => { %>
+                <option value="<%= material %>"><%= material %></option>
+                <% }); %>
+            </select>
+
+            <!--Bracelet Color-->
+            <select name="braceletColor" id="braceletColor">
+                <option value selected disabled>-- Select Bracelet Color
+                    --</option>
+                <!--Keeps first option in data set from defaulting-->
+                <% braceletColor.forEach(color => { %>
+                <option value="<%= color %>"><%= color %></option>
+                <% }); %>
+            </select>
+
             <h2>Movement</h2>
             <h2>Function</h2>
 

@@ -1,4 +1,31 @@
-/* <option value="Black">Black</option>
+module.exports = [
+  "Black",
+  "Blue",
+  "Bordeaux",
+  "Bronze",
+  "Brown",
+  "Champagne",
+  "Gold",
+  "Gold (solid)",
+  "Green",
+  "Grey",
+  "Meteorite",
+  "Mother of Pearl",
+  "Orange",
+  "Pink",
+  "Purple",
+  "Red",
+  "Silver",
+  "Silver (solid)",
+  "Skeletonized",
+  "Turquoise",
+  "White",
+  "Yellow",
+  "Other"
+];
+
+/*
+<option value="Black">Black</option>
 <option value="Blue">Blue</option>
 <option value="Bordeaux">Bordeaux</option>
 <option value="Bronze">Bronze</option>
@@ -21,12 +48,4 @@
 <option value="White">White</option>
 <option value="Yellow">Yellow</option>
 <option value="Other">Other</option>
-
-module.exports = [
-  "Black", "Blue", "Bordeaux", "Bronze", "Brown",
-  "Champagne", "Gold", "Gold (solid)", "Green", "Grey",
-  "Meteorite", "Mother of Pearl", "Orange", "Pink", "Purple",
-  "Red", "Silver", "Silver (solid)", "Skeletonized", "Turquoise",
-  "White", "Yellow", "Other"
-];
 */
