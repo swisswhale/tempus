@@ -8,8 +8,10 @@ const mongoose = require('mongoose'); // require package
 const methodOverride = require("method-override"); // new
 const morgan = require("morgan"); //new
 const path = require("path")
-const caseMaterials = require('./data/Case/case_mat'); // ✅ Import case materials
+const caseMaterial = require('./data/Case/case_mat'); // ✅ Import case materials
 const brands = require('./data/brands'); // ✅ Import brands
+const crystalMaterial = require('./data/case/crystal_mat'); // Import Crystal materials
+const bezelMaterial = require('./data/case/bezel_mat')
 
 const app = express();
 
@@ -39,9 +41,10 @@ app.use(express.static(path.join(__dirname, "public")));
 // ✅ Route to render the form (Corrected version)
 app.get('/new', (req, res) => {
     console.log("Brands:", brands);
-    console.log("Case Materials:", caseMaterials);
+    console.log("Case Material:", caseMaterial);
+    console.log("Crystal Material:", crystalMaterial);
   
-    res.render('new', { brands, caseMaterials }); // ✅ Pass caseMaterials & brands
+    res.render('new', { brands, caseMaterial, crystalMaterial, bezelMaterial }); // ✅ Pass caseMaterials & brands
 });
 
 
