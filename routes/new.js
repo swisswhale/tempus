@@ -70,6 +70,8 @@ router.post("/watches", async (req, res) => {
         console.error("Error saving watch:", err);
         res.status(500).send("Error adding watch.");
     }
+
+    console.log("Request Body:", req.body);
 });
 
 module.exports = router;

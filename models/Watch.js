@@ -5,57 +5,57 @@ const specialFeatures = require("../data/other");
 const watchSchema = mongoose.Schema({
 
     // Basics
-    brand: { type: String, required: true }, // Dropdown
-    model: { type: String, required: true }, // Text input
-    refNumber: { type: String, required: false, unique: false, sparse: true }, // Optional Reference Number
-    serialNumber: { type: String, required: false, unique: true }, // Unique Serial Number
+    brand: { type: String, required: true },
+    model: { type: String, required: true },
+    refNumber: { type: String, required: false, unique: false, sparse: true },
+    serialNumber: { type: String, required: false, unique: true },
 
     // Watch Type
-    yearOfProduction: { type: Number, required: false, min: 1900, max: new Date().getFullYear() }, // Year of manufacture
-    condition: { type: String, required: false }, // Radio Button
-    gender: { type: String, required: false }, // Radio Button
+    yearOfProduction: { type: Number, required: false, min: 1900, max: new Date().getFullYear() },
+    condition: { type: String, required: false },
+    gender: { type: String, required: false },
 
     // Purchase
-    purchasePrice: { type: Number, required: false, min: 0 }, // USD
-    purchaseDate: { type: Date, required: false }, // mm/dd/yyyy
-    seller: { type: String, required: false }, // Text input
+    purchasePrice: { type: Number, required: false, min: 0 },
+    purchaseDate: { type: Date, required: false },
+    seller: { type: String, required: false },
 
     // Seller Type
-    box: { type: Boolean, required: false }, // Radio Button (Yes/No)
-    papers: { type: Boolean, required: false }, // Radio Button (Yes/No)
+    box: { type: Boolean, required: false },
+    papers: { type: Boolean, required: false },
 
     // Case
-    caseDiameter: { type: Number, required: false, min: 0 }, // mm
-    caseMaterial: { type: String, required: false }, // Dropdown
-    bezelMaterial: { type: String, required: false }, // Dropdown
-    crystal: { type: String, required: false }, // Dropdown
-    waterResistance: { type: Number, required: false, min: 0 }, // ATM
+    caseDiameter: { type: Number, required: false, min: 0 },
+    caseMaterial: { type: String, required: false },
+    bezelMaterial: { type: String, required: false },
+    crystalMaterial: { type: String, required: false },
+    waterResistance: { type: Number, required: false, min: 0 },
 
     // Dial
-    dialColor: { type: String, required: false }, // Dropdown
-    dialStyle: { type: String, required: false }, // Radio Button
+    dialColor: { type: String, required: false },
+    dialStyle: { type: String, required: false },
 
     // Bracelet
-    braceletMaterial: { type: String, required: false }, // Dropdown
-    braceletColor: { type: String, required: false }, // Dropdown
+    braceletMaterial: { type: String, required: false },
+    braceletColor: { type: String, required: false },
 
     // Clasp
-    clasp: { type: String, required: false }, // Dropdown
-    claspMaterial: { type: String, required: false }, // Dropdown
+    clasp: { type: String, required: false },
+    claspMaterial: { type: String, required: false },
 
     // Movement
-    watchFunctions: { type: [String], default: [] }, // ✅ Stores an array properly
-    specialFeatures: { type: [String], default: [] }, // Checkbox list
-    caliberMovement: { type: String, required: false }, // Text input
-    baseCaliber: { type: String, required: false }, // Text input
-    powerReserve: { type: Number, required: false, min: 0 }, // Hours
-    numberOfJewels: { type: Number, required: false, min: 0 }, // Count of jewels in movement
+    watchFunctions: { type: [String], default: [] },
+    specialFeatures: { type: [String], default: [] },
+    movement: { type: String, required: false },
+    baseCaliber: { type: String, required: false },
+    powerReserve: { type: Number, required: false, min: 0 },
+    numberOfJewels: { type: Number, required: false, min: 0 },
 
     // Other
-    specialFeatures: { type: [String], default: [] }, // Checkbox list
+    specialFeatures: { type: [String], default: [] },
 
     // Notes
-    notes: { type: String, required: false }, // Freeform text
+    notes: { type: String, required: false },
 
     // Timestamps
     createdAt: { type: Date, default: Date.now }

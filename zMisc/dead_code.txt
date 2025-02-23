@@ -62,3 +62,20 @@ app.post("/watches", async (req, res) => {
 
             <input type="radio" id="boxNo" name="boxIncluded" value="false" <%= !watch.boxIncluded ? "checked" : "" %> />
             <label for="boxNo">No</label>
+
+
+             <label for="crystalMaterial">Crystal Material:</label>
+            <select name="crystalMaterial" id="crystalMaterial">
+                <option value selected disabled>-- Select Crystal Material --</option>
+                <% crystalMaterial.forEach(material => { %>
+                <option value="<%= material %>"><%= material %></option>
+                <% }); %>
+            </select>
+
+             <label for="brand">Brand:</label>
+            <select name="brand" id="brand">
+                <option value selected disabled>-- Select a Watchmaker --</option>
+                <% brands.forEach(brand => { %>
+                <option value="<%= brand %>"><%= brand %></option>
+                <% }); %>
+            </select>
