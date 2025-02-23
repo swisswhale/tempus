@@ -56,3 +56,9 @@ app.post("/watches", async (req, res) => {
         res.status(500).send("Error adding watch.");
     }
 });
+
+<input type="radio" id="boxYes" name="boxIncluded" value="true" <%= watch.boxIncluded ? "checked" : "" %> />
+            <label for="boxYes">Yes</label>
+
+            <input type="radio" id="boxNo" name="boxIncluded" value="false" <%= !watch.boxIncluded ? "checked" : "" %> />
+            <label for="boxNo">No</label>

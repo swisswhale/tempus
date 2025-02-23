@@ -1,0 +1,2 @@
+ <option value selected disabled>-- Select a Dial Color
+                    --</option>

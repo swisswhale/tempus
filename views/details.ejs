@@ -20,11 +20,14 @@
 
         <div class="section">
             <h2>Purchase Information</h2>
-            <p><strong>Purchase Price:</strong> <span>$<%= watch.purchasePrice.toLocaleString() %></span></p>
+            <p><strong>Purchase Price:</strong> <span>$<%= watch.purchasePrice ? watch.purchasePrice.toLocaleString() : "0.00" %></span></p>
             <p><strong>Purchase Date:</strong> <span><%= new Date(watch.purchaseDate).toDateString() %></span></p>
             <p><strong>Seller:</strong> <span><%= watch.seller %></span></p>
-            <p><strong>Original Box:</strong> <span><%= watch.boxIncluded ? "Yes" : "No" %></span></p>
-            <p><strong>Original Papers:</strong> <span><%= watch.papersIncluded ? "Yes" : "No" %></span></p>
+            <p><strong>Original Box:</strong>
+                <span><%= watch.boxIncluded === true ?  "Yes" : watch.boxIncluded === false ? "No" : "" %></span>
+            </p>
+            <p><strong>Original Papers:</strong> <span><%= watch.papersIncluded === true ?  "Yes" : watch.papersIncluded === false ? "No" : "" %></span
+                ></p>
         </div>
 
         <div class="section">

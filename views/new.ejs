@@ -24,9 +24,6 @@
         toggleOtherBrandField();
       });
     </script>
-
-        <link rel="stylesheet" href="/css/new2.css" />
-
     </head>
     <body>
         <h1>Add a New Watch</h1>
@@ -37,6 +34,7 @@
             <!--Brand-->
             <label for="brand">Brand:</label>
             <select name="brand" id="brand">
+                <option value selected disabled>-- Select a Watchmaker --</option>
                 <% brands.forEach(brand => { %>
                 <option value="<%= brand %>"><%= brand %></option>
                 <% }); %>
@@ -54,16 +52,13 @@
             <input type="text" id="SerialNumber" name="serialNumber" />
 
             <!--Gender-->
-            <label>Gender:</label>
+            <label for="gender">Gender:</label>
             <div class="radio-group">
-                <% ["Men's", "Women's", "Unisex"].forEach(gender => { %>
-                <label>
-                    <input type="radio" name="gender" value="<%= gender %>" />
-                    <%= gender %>
-                </label>
+                <% ["Men's", "Women's", "Unisex"].forEach(genderOption => { %>
+                    <input type="radio" id="gender-<%= genderOption %>" name="gender" value="<%= genderOption %>" <%= typeof watch !== "undefined" && watch.gender === genderOption ? "checked" : "" %> />
+                    <label for="gender-<%= genderOption %>"><%= genderOption %></label>
                 <% }); %>
             </div>
-            <!--Serial Number-->
 
             <h2>Purchase Details</h2>
             <!-- Purchase Price-->
@@ -95,9 +90,14 @@
             </div>
 
             <h2>Case</h2>
+                <!--Case Diameter-->
+                <label for="caseDiameter">Case Diameter (mm):</label>
+                <input type="number" id="caseDiameter" name="caseDiameter"
+                    vale="mm" />
             <!--Case Material DROPDOWN-->
             <label for="caseMaterial">Case Material:</label>
             <select name="caseMaterial" id="caseMaterial">
+                <option value selected disabled>-- Select Case Material --</option>
                 <% caseMaterial.forEach(material => { %>
                 <option value="<%= material %>"><%= material %></option>
                 <% }); %>
@@ -105,17 +105,15 @@
             <!--Bezel Material DROPDOWN-->
             <label for="bezelMaterial">Bezel Material:</label>
             <select name="bezelMaterial" id="bezelMaterial">
+                <option value selected disabled>-- Select Bezel Material --</option>
                 <% bezelMaterial.forEach(material => { %>
                 <option value="<%= material %>"><%= material %></option>
                 <% }); %>
             </select>
-            <!--Case Diameter-->
-            <label for="caseDiameter">Case Diameter (mm):</label>
-            <input type="number" id="caseDiameter" name="caseDiameter"
-                vale="mm" />
             <!--Crystal DROPWON-->
             <label for="crystalMaterial">Crystal Material:</label>
             <select name="crystalMaterial" id="crystalMaterial">
+                <option value selected disabled>-- Select Crystal Material --</option>
                 <% crystalMaterial.forEach(material => { %>
                 <option value="<%= material %>"><%= material %></option>
                 <% }); %>

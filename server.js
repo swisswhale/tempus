@@ -15,6 +15,7 @@ const app = express();
 const indexRoute = require("./routes/index.js");
 const deleteRoute = require("./routes/delete.js");
 const newRoute = require("./routes/new.js");
+const editRoute = require("./routes/edit.js");
 
 // Import data sets
 const caseMaterial = require("./data/case/case_mat");
@@ -52,6 +53,7 @@ app.set("view engine", "ejs");
 app.use(indexRoute);
 app.use(deleteRoute);
 app.use(newRoute);
+app.use(editRoute);
 
 app.get("/", async (req, res) => {
     res.render("home.ejs");
