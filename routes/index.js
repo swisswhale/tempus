@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Watch = require("../models/Watch"); // Ensure correct path to the Watch model
 
-// ✅ Route to get all watches
+// Route to get all watches
 router.get("/watches", async (req, res) => {
     try {
         const watches = await Watch.find();
@@ -13,5 +13,5 @@ router.get("/watches", async (req, res) => {
     }
 });
 
-// ✅ Export the router
+// Export the router
 module.exports = router;
