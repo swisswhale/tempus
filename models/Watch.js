@@ -2,62 +2,67 @@ const mongoose = require("mongoose");
 const specialFeatures = require("../data/other");
 
 // Watch Schema
-const watchSchema = new mongoose.Schema({
-    brand: { type: String, required: true }, // Brand name (e.g., Rolex, Omega)
-    model: { type: String, required: true }, // Model name (e.g., Submariner, Speedmaster)
-    refNumber: { type: String, required: false, unique: false, sparse: true },
-    serialNumber: { type: String, required: false, unique: true }, // Unique Ref Number Optional
-    
-    // Movement & Caliber Details
-    movement: { type: String, required: false }, // Movement type (e.g., Automatic, Quartz)
-    caliberMovement: { type: String, required: false }, // Specific caliber/movement number
-    baseCaliber: { type: String, required: false }, // Base caliber of the movement
-    powerReserve: { type: Number, required: false }, // Power reserve in hours
-    numberOfJewels: { type: Number, required: false }, // Number of jewels in movement
+const watchSchema = mongoose.Schema({
 
-    // Case Details
-    caseMaterial: { type: String, required: false }, // Case material (e.g., Stainless Steel, Gold)
-    caseDiameter: { type: Number, required: false }, // Diameter in mm
-    waterResistance: { type: String, required: false }, // Water resistance rating (e.g., 100m)
-    bezelMaterial: { type: String, required: false }, // Bezel material (e.g., Ceramic, Stainless Steel)
-    crystal: { type: String, required: false }, // Crystal type (e.g., Sapphire, Acrylic)
+    // Basics
+    brand: { type: String, required: true }, // Dropdown
+    model: { type: String, required: true }, // Text input
+    refNumber: { type: String, required: false, unique: false, sparse: true }, // Optional Reference Number
+    serialNumber: { type: String, required: false, unique: true }, // Unique Serial Number
 
-    // Dial & Aesthetics
-    dialColor: { type: String, required: false }, // Dial color and style
-    dialStyle: { type: String, required: false },
-    braceletMaterial: { type: String, required: false }, // Bracelet material (e.g., Stainless Steel, Leather)
-    braceletColor: { type: String, required: false }, // Bracelet color
-    clasp: { type: String, required: false }, // Type of clasp (e.g., Deployant, Buckle)
-    claspMaterial: { type: String, required: false }, // Clasp material
+    // Watch Type
+    yearOfProduction: { type: Number, required: false, min: 1900, max: new Date().getFullYear() }, // Year of manufacture
+    condition: { type: String, required: false }, // Radio Button
+    gender: { type: String, required: false }, // Radio Button
 
-    // Production & Ownership Details
-    yearOfProduction: { type: Number, required: false }, // Year of manufacture
-    condition: {
-        type: String,
-        enum: ["New", "Like New & Unworn", "Excellent", "Good", "Fair", "Poor"],
-        required: false
-    }, // Condition rating
-    gender: { type: String, enum: ["Men's", "Women's", "Unisex"], required: false }, // Gender category
-    location: { type: String, required: false }, // Location of the watch
+    // Purchase
+    purchasePrice: { type: Number, required: false, min: 0 }, // USD
+    purchaseDate: { type: Date, required: false }, // mm/dd/yyyy
+    seller: { type: String, required: false }, // Text input
 
-    // Pricing & Financial Tracking
-    purchasePrice: { type: Number, required: false }, // Price paid by the user
-    marketValue: { type: Number, required: false }, // Current market value
-    currency: { type: String, default: "USD" }, // Currency for price values
-    purchaseDate: { type: Date, required: false }, // Purchase date
-    seller: { type: String, required: false }, // Seller or store name
+    // Seller Type
+    box: { type: Boolean, required: false }, // Radio Button (Yes/No)
+    papers: { type: Boolean, required: false }, // Radio Button (Yes/No)
 
-    // Additional Features & Metadata
-    box: { type: Boolean, default: false }, // Whether the watch includes original box & papers
-    papers: { type: Boolean, default: false }, // Whether the watch includes original box & papers
-    watchFunctions: [{ type: String }], // List of functions (e.g., Chronograph, GMT)
-    specialFeatures: { type: String, required: false }, // Miscellaneous additional information
-    images: [{ type: String }], // Array of image URLs (e.g., Cloudinary/AWS links)
-    createdAt: { type: Date, default: Date.now }, // Timestamp for when the watch was added
+    // Case
+    caseDiameter: { type: Number, required: false, min: 0 }, // mm
+    caseMaterial: { type: String, required: false }, // Dropdown
+    bezelMaterial: { type: String, required: false }, // Dropdown
+    crystal: { type: String, required: false }, // Dropdown
+    waterResistance: { type: Number, required: false, min: 0 }, // ATM
+
+    // Dial
+    dialColor: { type: String, required: false }, // Dropdown
+    dialStyle: { type: String, required: false }, // Radio Button
+
+    // Bracelet
+    braceletMaterial: { type: String, required: false }, // Dropdown
+    braceletColor: { type: String, required: false }, // Dropdown
+
+    // Clasp
+    clasp: { type: String, required: false }, // Dropdown
+    claspMaterial: { type: String, required: false }, // Dropdown
+
+    // Movement
+    watchFunctions: { type: [String], default: [] }, // ✅ Stores an array properly
+    specialFeatures: { type: [String], default: [] }, // Checkbox list
+    caliberMovement: { type: String, required: false }, // Text input
+    baseCaliber: { type: String, required: false }, // Text input
+    powerReserve: { type: Number, required: false, min: 0 }, // Hours
+    numberOfJewels: { type: Number, required: false, min: 0 }, // Count of jewels in movement
+
+    // Other
+    specialFeatures: { type: [String], default: [] }, // Checkbox list
+
+    // Notes
+    notes: { type: String, required: false }, // Freeform text
+
+    // Timestamps
+    createdAt: { type: Date, default: Date.now }
 });
 
-// Add a full-text search index
-watchSchema.index({ brand: "text", model: "text", referenceNumber: "text" });
+// Full-text search index for brand, model, and serial number
+watchSchema.index({ brand: "text", model: "text", serialNumber: "text" });
 
 // Create and export the model
 const Watch = mongoose.model("Watch", watchSchema);

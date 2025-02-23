@@ -35,6 +35,7 @@
     ├── login.ejs
     ├── partials
     ├── index.ejs
+    ├── edit.ejs
     └── register.ejs
 
 111 directories, 25 files

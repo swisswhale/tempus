@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Watch - <%= watch.brand %> <%= watch.model %></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <h1>Edit Watch Details</h1>
+
+    <form action="/watches/<%= watch._id %>?_method=PUT" method="POST">
+        
+        <!-- Brand -->
+        <label for="brand">Brand:</label>
+        <select name="brand">
+            <% if (typeof brands !== "undefined" && Array.isArray(brands)) { %>
+                <% brands.forEach(brand => { %>
+                    <option value="<%= brand %>" <%= watch.brand === brand ? "selected" : "" %>><%= brand %></option>
+                <% }); %>
+            <% } else { %>
+                <option value="">No options available</option>
+            <% } %>
+        </select>
+
+        <!-- Model -->
+        <label for="model">Model:</label>
+        <input type="text" id="model" name="model" value="<%= watch.model %>" required />
+
+        <!-- Case Material -->
+        <label for="caseMaterial">Case Material:</label>
+        <select name="caseMaterial">
+            <% if (typeof caseMaterial !== "undefined" && Array.isArray(caseMaterial)) { %>
+                <% caseMaterial.forEach(material => { %>
+                    <option value="<%= material %>" <%= watch.caseMaterial === material ? "selected" : "" %>><%= material %></option>
+                <% }); %>
+            <% } else { %>
+                <option value="">No options available</option>
+            <% } %>
+        </select>
+
+        <!-- Bezel Material -->
+        <label for="bezelMaterial">Bezel Material:</label>
+        <select name="bezelMaterial">
+            <% if (typeof bezelMaterial !== "undefined" && Array.isArray(bezelMaterial)) { %>
+                <% bezelMaterial.forEach(material => { %>
+                    <option value="<%= material %>" <%= watch.bezelMaterial === material ? "selected" : "" %>><%= material %></option>
+                <% }); %>
+            <% } else { %>
+                <option value="">No options available</option>
+            <% } %>
+        </select>
+
+        <!-- Crystal Material -->
+        <label for="crystalMaterial">Crystal Material:</label>
+        <select name="crystalMaterial">
+            <% if (typeof crystalMaterial !== "undefined" && Array.isArray(crystalMaterial)) { %>
+                <% crystalMaterial.forEach(material => { %>
+                    <option value="<%= material %>" <%= watch.crystalMaterial === material ? "selected" : "" %>><%= material %></option>
+                <% }); %>
+            <% } else { %>
+                <option value="">No options available</option>
+            <% } %>
+        </select>
+
+        <!-- Dial Color -->
+        <label for="dialColor">Dial Color:</label>
+        <select name="dialColor">
+            <% if (typeof dialColor !== "undefined" && Array.isArray(dialColor)) { %>
+                <% dialColor.forEach(color => { %>
+                    <option value="<%= color %>" <%= watch.dialColor === color ? "selected" : "" %>><%= color %></option>
+                <% }); %>
+            <% } else { %>
+                <option value="">No options available</option>
+            <% } %>
+        </select>
+
+        <!-- Bracelet Material -->
+        <label for="braceletMaterial">Bracelet Material:</label>
+        <select name="braceletMaterial">
+            <% if (typeof braceletMaterial !== "undefined" && Array.isArray(braceletMaterial)) { %>
+                <% braceletMaterial.forEach(material => { %>
+                    <option value="<%= material %>" <%= watch.braceletMaterial === material ? "selected" : "" %>><%= material %></option>
+                <% }); %>
+            <% } else { %>
+                <option value="">No options available</option>
+            <% } %>
+        </select>
+
+        <!-- Bracelet Color -->
+        <label for="braceletColor">Bracelet Color:</label>
+        <select name="braceletColor">
+            <% if (typeof braceletColor !== "undefined" && Array.isArray(braceletColor)) { %>
+                <% braceletColor.forEach(color => { %>
+                    <option value="<%= color %>" <%= watch.braceletColor === color ? "selected" : "" %>><%= color %></option>
+                <% }); %>
+            <% } else { %>
+                <option value="">No options available</option>
+            <% } %>
+        </select>
+
+        <!-- Movement -->
+        <label for="movement">Movement:</label>
+        <select name="movement">
+            <% if (typeof movement !== "undefined" && Array.isArray(movement)) { %>
+                <% movement.forEach(type => { %>
+                    <option value="<%= type %>" <%= watch.movement === type ? "selected" : "" %>><%= type %></option>
+                <% }); %>
+            <% } else { %>
+                <option value="">No options available</option>
+            <% } %>
+        </select>
+
+        <!-- Watch Functions -->
+        <label for="watchFunctions">Watch Functions:</label>
+        <% if (typeof watchFunctions !== "undefined" && Array.isArray(watchFunctions)) { %>
+            <% watchFunctions.forEach(func => { %>
+                <input type="checkbox" name="watchFunctions" value="<%= func %>" <%= watch.watchFunctions.includes(func) ? "checked" : "" %> />
+                <%= func %>
+            <% }); %>
+        <% } else { %>
+            <p>No options available</p>
+        <% } %>
+
+        <!-- Special Features -->
+        <label for="specialFeatures">Special Features:</label>
+        <% if (typeof specialFeatures !== "undefined" && Array.isArray(specialFeatures)) { %>
+            <% specialFeatures.forEach(feature => { %>
+                <input type="checkbox" name="specialFeatures" value="<%= feature %>" <%= watch.specialFeatures.includes(feature) ? "checked" : "" %> />
+                <%= feature %>
+            <% }); %>
+        <% } else { %>
+            <p>No options available</p>
+        <% } %>
+
+        <!-- Submit Button -->
+        <button type="submit">Update Watch</button>
+    </form>
+
+    <a href="/watches/<%= watch._id %>">Cancel</a>
+
+</body>
+</html>

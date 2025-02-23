@@ -5,26 +5,27 @@ dotenv.config(); // Loads the environment variables from .env file
 // import modules
 const express = require("express");
 const mongoose = require('mongoose'); // require package
-const methodOverride = require("method-override"); // new
+const methodOverride = require("method-override");
 const morgan = require("morgan"); //new
 const path = require("path")
 
+
 // import data sets
-const caseMaterial = require('./data/Case/case_mat'); // import case materials
-const brands = require('./data/basics/brands');
-const gender = require('./data/basics/gender')
-const crystalMaterial = require('./data/case/crystal_mat');
-const bezelMaterial = require('./data/case/bezel_mat')
-const dialColor = require('./data/Dial/color')
-const braceletMaterial = require('./data/Strap/strap_mat')
-const braceletColor = require('./data/Strap/color')
-const movement = require('./data/movement/movement')
-const watchFunctions = require('./data/movement/functions')
-const specialFeatures = require('./data/other')
+const caseMaterial = require(path.join(__dirname, "data/case/case_mat.js"));
+const brands = require(path.join(__dirname, "data/basics/brands.js"));
+const gender = require(path.join(__dirname, "data/basics/gender.js"));
+const crystalMaterial = require(path.join(__dirname, "data/case/crystal_mat.js"));
+const bezelMaterial = require(path.join(__dirname, "data/case/bezel_mat.js"));
+const dialColor = require(path.join(__dirname, "data/dial/color.js"));
+const braceletMaterial = require(path.join(__dirname, "data/strap/strap_mat.js"));
+const braceletColor = require(path.join(__dirname, "data/strap/color.js"));
+const movement = require(path.join(__dirname, "data/movement/movement.js"));
+const watchFunctions = require(path.join(__dirname, "data/movement/functions.js"));
+const specialFeatures = require(path.join(__dirname, "data/other.js"));
 
 const app = express();
 
-// ✅ Set EJS as the templating engine
+// Set EJS as the templating engine
 app.set('view engine', 'ejs');
 
 // Import watch schema
@@ -47,7 +48,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Routes
 
-// ✅ Route to render the form (Corrected version)
+// Route to render the form (Corrected version)
 app.get('/new', (req, res) => {
     console.log("Brands:", brands);
     console.log("Case Material:", caseMaterial);
@@ -64,10 +65,28 @@ app.get('/new', (req, res) => {
     }); // pass datasets
 });
 
-// ✅ Get all watches
+// Get all watches
 app.get("/watches", async (req, res) => {
     const watches = await Watch.find();
     res.render("index.ejs", { watches });
+});
+
+// Get Specific Watch
+
+app.get("/watches/:id", async (req, res) => {
+    try {
+        const watch = await Watch.findById(req.params.id);
+        if (!watch) {
+            return res.status(404).send("Watch not found");
+        }
+
+        console.log("Retrieved Watch Data:", watch); // 🔍 Debugging step
+
+        res.render("details", { watch });
+    } catch (error) {
+        console.error("Error retrieving watch:", error);
+        res.status(500).send("Server error");
+    }
 });
 
 // Get form to add watch
@@ -75,23 +94,45 @@ app.get("/watches", async (req, res) => {
 //    res.render("new.ejs");
 //})
 
-// ✅ Handle watch form submission
+// Handle watch form submission
 app.post("/watches", async (req, res) => {
     try {
-        const newWatch = await Watch.create(req.body);
+        console.log("Raw Form Data Received:", req.body); // 🔍 Debugging step
+
+        // Extract checkbox values correctly
+        req.body.watchFunctions = req.body["watchFunctions[]"]
+            ? (Array.isArray(req.body["watchFunctions[]"]) ? req.body["watchFunctions[]"] : [req.body["watchFunctions[]"]])
+            : [];
+
+        req.body.specialFeatures = req.body["specialFeatures[]"]
+            ? (Array.isArray(req.body["specialFeatures[]"]) ? req.body["specialFeatures[]"] : [req.body["specialFeatures[]"]])
+            : [];
+
+        // Remove old incorrect fields (optional)
+        delete req.body["watchFunctions[]"];
+        delete req.body["specialFeatures[]"];
+
+        console.log("Processed Watch Data:", req.body); // 🔍 Debugging step
+
+        const newWatch = new Watch(req.body);
+        await newWatch.save();
+
         res.redirect("/watches");
     } catch (err) {
-        console.error(err);
+        console.error("Error saving watch:", err);
         res.status(500).send("Error adding watch.");
     }
 });
 
-// ✅ Render the homepage
+// Edit \\
+
+
+// Render the homepage
 app.get("/", async (req, res) => {
     res.render("home.ejs");
 });
 
-// ✅ Start the server
+// Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
