@@ -1,0 +1,58 @@
+/* app.get("/new", (req, res) => {
+    res.render("new", {
+        brands,
+        gender,
+        caseMaterial,
+        crystalMaterial,
+        bezelMaterial,
+        dialColor,
+        braceletMaterial,
+        braceletColor,
+        movement,
+        watchFunctions,
+        specialFeatures,
+    });
+}); */
+
+/* app.get('/new', (req, res) => {
+    console.log("Brands:", brands);
+    console.log("Case Material:", caseMaterial);
+    console.log("Crystal Material:", crystalMaterial);
+    console.log("Bezel Material:", bezelMaterial);
+    console.log("Dial Color:", dialColor);
+    console.log("Bracelet Material:", braceletMaterial);
+    console.log("Bracelet Color:", braceletColor);
+
+    res.render('new', {
+        brands, gender, caseMaterial, crystalMaterial, bezelMaterial,
+        dialColor, braceletMaterial, braceletColor, movement, watchFunctions,
+        specialFeatures
+    }); // pass datasets
+}); */
+
+app.post("/watches", async (req, res) => {
+    try {
+        req.body.watchFunctions = req.body["watchFunctions[]"]
+            ? Array.isArray(req.body["watchFunctions[]"])
+                ? req.body["watchFunctions[]"]
+                : [req.body["watchFunctions[]"]]
+            : [];
+
+        req.body.specialFeatures = req.body["specialFeatures[]"]
+            ? Array.isArray(req.body["specialFeatures[]"])
+                ? req.body["specialFeatures[]"]
+                : [req.body["specialFeatures[]"]]
+            : [];
+
+        delete req.body["watchFunctions[]"];
+        delete req.body["specialFeatures[]"];
+
+        const newWatch = new Watch(req.body);
+        await newWatch.save();
+
+        res.redirect("/watches");
+    } catch (err) {
+        console.error("Error saving watch:", err);
+        res.status(500).send("Error adding watch.");
+    }
+});

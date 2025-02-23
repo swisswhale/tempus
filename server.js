@@ -13,7 +13,8 @@ const app = express();
 
 // Import routes
 const indexRoute = require("./routes/index.js");
-const deleteRoute = require("./routes/delete.js")
+const deleteRoute = require("./routes/delete.js");
+const newRoute = require("./routes/new.js");
 
 // Import data sets
 const caseMaterial = require("./data/case/case_mat");
@@ -50,25 +51,10 @@ app.set("view engine", "ejs");
 // Routes
 app.use(indexRoute);
 app.use(deleteRoute);
+app.use(newRoute);
 
 app.get("/", async (req, res) => {
     res.render("home.ejs");
-});
-
-app.get("/new", (req, res) => {
-    res.render("new", {
-        brands,
-        gender,
-        caseMaterial,
-        crystalMaterial,
-        bezelMaterial,
-        dialColor,
-        braceletMaterial,
-        braceletColor,
-        movement,
-        watchFunctions,
-        specialFeatures,
-    });
 });
 
 app.get("/watches/:id", async (req, res) => {
@@ -84,32 +70,7 @@ app.get("/watches/:id", async (req, res) => {
     }
 });
 
-app.post("/watches", async (req, res) => {
-    try {
-        req.body.watchFunctions = req.body["watchFunctions[]"]
-            ? Array.isArray(req.body["watchFunctions[]"])
-                ? req.body["watchFunctions[]"]
-                : [req.body["watchFunctions[]"]]
-            : [];
 
-        req.body.specialFeatures = req.body["specialFeatures[]"]
-            ? Array.isArray(req.body["specialFeatures[]"])
-                ? req.body["specialFeatures[]"]
-                : [req.body["specialFeatures[]"]]
-            : [];
-
-        delete req.body["watchFunctions[]"];
-        delete req.body["specialFeatures[]"];
-
-        const newWatch = new Watch(req.body);
-        await newWatch.save();
-
-        res.redirect("/watches");
-    } catch (err) {
-        console.error("Error saving watch:", err);
-        res.status(500).send("Error adding watch.");
-    }
-});
 
 // Start server
 const PORT = process.env.PORT || 3000;

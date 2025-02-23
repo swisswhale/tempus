@@ -32,12 +32,15 @@
                     <td><%= watch.model %></td>
                     <td><%= watch.refNumber || "N/A" %></td>
                     <td><%= watch.caseMaterial %></td>
-                    <td>$<%= watch.purchasePrice.toFixed(2) %></td>
-                    <td><%= watch.purchaseDate.toISOString().split('T')[0]
+                    <td>$<%= watch.purchasePrice ?
+                        watch.purchasePrice.toFixed(2) : "0.00" %></td>
+                    <td><%= watch.purchaseDate ? new Date(watch.purchaseDate).toISOString().split('T')[0] : "N/A"
                         %></td>
                     <td>
                         <a href="/watches/<%= watch._id %>">View</a> |
-                        <a href="/watches/<%= watch._id %>/watches/:id/edit">Edit</a> |
+                        <a
+                            href="/watches/<%= watch._id %>/watches/:id/edit">Edit</a>
+                        |
                         <form action="/watches/<%= watch._id %>?_method=DELETE"
                             method="POST" style="display:inline;">
                             <button type="submit"
