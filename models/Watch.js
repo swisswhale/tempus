@@ -11,7 +11,7 @@ const watchSchema = mongoose.Schema({
     serialNumber: { type: String, required: false, unique: true },
 
     // Watch Type
-    yearOfProduction: { type: Number, required: false, min: 1900, max: new Date().getFullYear() },
+    yearOfProduction: { type: Number, required: false, min: 1799, max: new Date().getFullYear() },
     condition: { type: String, required: false },
     gender: { type: String, required: false },
 

@@ -79,3 +79,5 @@ app.post("/watches", async (req, res) => {
                 <option value="<%= brand %>"><%= brand %></option>
                 <% }); %>
             </select>
+
+            <%- include('partials/navbar.ejs') %>
