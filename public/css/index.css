@@ -1,110 +1,110 @@
 @import url("global.css");
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Raleway:wght@300;600&family=Montserrat:wght@300;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Raleway:wght@300;600&family=Montserrat:wght@300;700&display=swap");
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: "Arial", sans-serif;
-    padding-top: 80px;
+  margin: 0;
+  padding: 0;
+  font-family: "Arial", sans-serif;
+  padding-top: 80px;
 }
 
 .navbar {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    background: #fff;
-    z-index: 1000;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: #fff;
+  z-index: 1000;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
 }
 
 .navbar nav {
-    display: flex;
-    gap: 15px;
+  display: flex;
+  gap: 15px;
 }
 
 .navbar a[href="/new"] {
-    background-color: green;
-    color: white;
-    border: 2px solid green;
-    padding: 10px 15px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s ease-in-out;
-    border-radius: 4px;
+  background-color: green;
+  color: white;
+  border: 2px solid green;
+  padding: 10px 15px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s ease-in-out;
+  border-radius: 4px;
 }
 
 .navbar a[href="/new"]:hover {
-    background-color: darkgreen;
-    border-color: darkgreen;
+  background-color: darkgreen;
+  border-color: darkgreen;
 }
 
 .navbar a[href="/auth/logout"] {
-    background-color: red;
-    color: white;
-    border: 2px solid red;
-    padding: 10px 15px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s ease-in-out;
-    border-radius: 4px;
+  background-color: red;
+  color: white;
+  border: 2px solid red;
+  padding: 10px 15px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s ease-in-out;
+  border-radius: 4px;
 }
 
 .navbar a[href="/auth/logout"]:hover {
-    background-color: darkred;
-    border-color: darkred;
+  background-color: darkred;
+  border-color: darkred;
 }
 
 .watch-grid {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
 }
 
 .card {
-    background: #f7f7f7;
-    padding: 20px;
-    border-radius: 6px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-    transition: 0.3s ease-in-out;
-    text-align: center;
-    width: 100%;
-    box-sizing: border-box;
+  background: #f7f7f7;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease-in-out;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .card:hover {
-    background: #e0e0e0;
-    transform: scale(1.02);
+  background: #e0e0e0;
+  transform: scale(1.02);
 }
 
 .card img {
-    width: 100%;
-    height: auto;
-    border-radius: 6px;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
 }
 
 .card h3 {
-    font-size: 18px;
-    color: #333;
-    margin-top: 10px;
+  font-size: 18px;
+  color: #333;
+  margin-top: 10px;
 }
 
 @media (max-width: 768px) {
-    .watch-grid {
-        width: 100%;
-        padding: 10px;
-    }
+  .watch-grid {
+    width: 100%;
+    padding: 10px;
+  }
 
-    .card {
-        width: 100%;
-    }
+  .card {
+    width: 100%;
+  }
 }
