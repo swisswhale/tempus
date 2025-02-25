@@ -1,7 +1,7 @@
 # Tempus - Watch Collection Tracker
 
 #### A watch collection management application for tracking and analyzing timepieces.
-<img src="/Users/swisswhale/code/ga/projects/tempus/public/images/Tempus - Home.jpg" alt="Screenshot of Tempus"/>
+<img src="public/images/Tempus - Home.jpg" alt="Screenshot of Tempus"/>
 
 ## Description
 Tempus is a modern watch collection management application designed for horology enthusiasts, collectors, and investors. 
@@ -43,10 +43,10 @@ While Tempus currently offers manual data entry, future enhancements will includ
 
 ## Wireframe & Planning
 ### [Trello Board](https://trello.com/b/HxeSTFMS/men-stack-crud-app-project-ii)
-<img src = /Users/swisswhale/code/ga/projects/tempus/public/images/tempus_wf.jpg>
+<img src = "public/images/tempus_wf.jpg">
 
 ## Database Schema
-<img src = /Users/swisswhale/code/ga/projects/tempus/public/images/erd.jpg>
+<img src = "public/images/erd.jpg">
 
 * MongoDB is used for storing watch data.
 * Schema includes user-linked collections to ensure privacy.
