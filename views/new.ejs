@@ -2,224 +2,246 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Add New Watch</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add New Watch</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const brandSelect = document.getElementById("brand");
+            const otherBrandField = document.getElementById("otherBrand");
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const brandSelect = document.getElementById("brand");
-      const otherBrandField = document.getElementById("otherBrand");
+            function toggleOtherBrandField() {
+                if (brandSelect.value === "Other") {
+                    otherBrandField.style.display = "block";
+                    otherBrandField.setAttribute("required", "required");
+                } else {
+                    otherBrandField.style.display = "none";
+                    otherBrandField.removeAttribute("required");
+                }
+            }
 
-      function toggleOtherBrandField() {
-        if (brandSelect.value === "Other") {
-          otherBrandField.style.display = "block";
-          otherBrandField.setAttribute("required", "required");
-        } else {
-          otherBrandField.style.display = "none";
-          otherBrandField.removeAttribute("required");
-        }
-      }
-
-      brandSelect.addEventListener("change", toggleOtherBrandField);
-      toggleOtherBrandField();
-    });
-  </script>
+            brandSelect.addEventListener("change", toggleOtherBrandField);
+            toggleOtherBrandField();
+        });
+    </script>
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/new.css">
 </head>
 
-<%- include('partials/navbar.ejs') %>
-
 <body>
-  <h1>Add a New Watch</h1>
+    <form action="/watches" method="POST">
 
-  <form action="/watches" method="POST">
+       <h1>Add a New Watch</h1>
 
-    <h2>Basics</h2>
-    <!--Brand-->
-    <label for="brand">Brand:</label>
-    <select name="brand" id="brand">
-      <option value selected disabled>-- Select a Watchmaker --</option>
-      <% brands.forEach(brand => { %>
-      <option value="<%= brand %>"><%= brand %></option>
-      <% }); %>
-    </select>
-    <input type="text" id="otherBrand" name="otherBrand" placeholder="Enter brand name" style="display: none" />
-    <!--Model-->
-    <label for="model">Model:</label>
-    <input type="text" id="model" name="model" required />
-    <!--Ref number-->
-    <label for="refNumber">Reference Number:</label>
-    <input type="text" id="refNumber" name="refNumber" />
-    <!--Serial Number-->
-    <label for="serialNumber">Serial Number:</label>
-    <input type="text" id="SerialNumber" name="serialNumber" />
-    <!--Year of Production-->
-    <label for="" yearOfProduction">Year of Production:</label>
-    <input type="number" id="yearofProduction" name="yearOfProduction" />
+        <div class="container">
+            <h2>Basics</h2>
 
-    <!--Gender-->
-    <label for="gender">Gender:</label>
-    <div class="radio-group">
-      <% ["Men's", "Women's", "Unisex"].forEach(genderOption => { %>
-      <input type="radio" id="gender-<%= genderOption %>" name="gender" value="<%= genderOption %>" <%= typeof watch !== "undefined" && watch.gender === genderOption ? "checked" : "" %> />
-      <label for="gender-<%= genderOption %>"><%= genderOption %></label>
-      <% }); %>
-    </div>
+            <label for="brand">Brand:</label>
+            <select name="brand" id="brand">
+                <option value selected disabled>-- Select a Watchmaker --</option>
+                <% brands.forEach(brand=> { %>
+                    <option value="<%= brand %>">
+                        <%= brand %>
+                    </option>
+                    <% }); %>
+            </select>
+            <input type="text" id="otherBrand" name="otherBrand" placeholder="Enter brand name" style="display: none" />
 
-    <h2>Purchase Details</h2>
-    <!-- Purchase Price-->
-    <label for="purchasePrice">Purchase Price:</label>
-    <input type="number" id="purchasePrice" name="purchasePrice" />
-    <!--Purchase Date-->
-    <label for="purchaseDate">Purchase Date:</label>
-    <input type="date" id="purchaseDate" name="purchaseDate" />
-    <!--Seller-->
-    <label for="seller">Seller:</label>
-    <input type="text" id="seller" name="seller" />
-    <!--Box-->
-    <label>Original Box Included?</label>
-    <div class="radio-group">
-      <input type="radio" id="boxYes" name="box" value="true" required />
-      <label for="boxYes">Yes</label>
+            <label for="model">Model:</label>
+            <input type="text" id="model" name="model" required />
 
-      <input type="radio" id="boxNo" name="box" value="false" required />
-      <label for="boxNo">No</label>
-    </div>
+            <label for="refNumber">Reference Number:</label>
+            <input type="text" id="refNumber" name="refNumber" />
 
-    <label>Original Papers Included?</label>
-    <div class="radio-group">
-      <input type="radio" id="papersYes" name="papers" value="true" required />
-      <label for="papersYes">Yes</label>
+            <label for="serialNumber">Serial Number:</label>
+            <input type="text" id="SerialNumber" name="serialNumber" />
 
-      <input type="radio" id="papersNo" name="papers" value="false" required />
-      <label for="papersNo">No</label>
-    </div>
+            <label for="" yearOfProduction">Year of Production:</label>
+            <input type="number" id="yearofProduction" name="yearOfProduction" />
 
-    <h2>Case</h2>
-    <!--Case Diameter-->
-    <label for="caseDiameter">Case Diameter (mm):</label>
-    <input type="number" id="caseDiameter" name="caseDiameter" vale="mm" />
-    <!--Case Material DROPDOWN-->
-    <label for="caseMaterial">Case Material:</label>
-    <select name="caseMaterial" id="caseMaterial">
-      <option value selected disabled>-- Select Case Material --</option>
-      <% caseMaterial.forEach(material => { %>
-      <option value="<%= material %>"><%= material %></option>
-      <% }); %>
-    </select>
-    <!--Bezel Material DROPDOWN-->
-    <label for="bezelMaterial">Bezel Material:</label>
-    <select name="bezelMaterial" id="bezelMaterial">
-      <option value selected disabled>-- Select Bezel Material --</option>
-      <% bezelMaterial.forEach(material => { %>
-      <option value="<%= material %>"><%= material %></option>
-      <% }); %>
-    </select>
-    <!--Crystal DROPWON-->
-    <label for="crystalMaterial">Crystal Material:</label>
-    <select name="crystalMaterial">
-      <option value="" disabled selected>-- Select Crystal Material --</option>
-      <% crystalMaterial.forEach(material => { %>
-      <option value="<%= material %>"><%= material %></option>
-      <% }); %>
-    </select>
-    <!--Water Resistance-->
-    <label for="waterResistance">Water Resistance (ATM):</label>
-    <input type="number" id="waterResistance" name="waterResistance" vale="ATM" />
 
-    <h2>Dial</h2>
-    <!--Dial Numerals-->
-    <label>Dial Style:</label>
-    <div class="radio-group">
-      <img src="images/dials/arabic-numerals.png" />
-      <input type="radio" id="arabic" name="dialStyle" value="Arabic Numerals" />
-      <label for="arabic">Arabic Numerals</label>
+            <label for="gender">Gender:</label>
+            <div class="radio-group">
+                <% ["Men's", "Women's" , "Unisex" ].forEach(genderOption=> { %>
+                    <input type="radio" id="gender-<%= genderOption %>" name="gender" value="<%= genderOption %>"
+                        <%=typeof watch !=="undefined" && watch.gender===genderOption ? "checked" : "" %> />
+                    <label for="gender-<%= genderOption %>">
+                        <%= genderOption %>
+                    </label>
+                    <% }); %>
+            </div>
+        </div>
 
-      <img src="images/dials/gemstones.png" />
-      <input type="radio" id="gemstones" name="dialStyle" value="Gemstones" />
-      <label for="gemstones">Gemstones</label>
+        <div class="container">
+            <h2>Purchase Details</h2>
 
-      <img src="images/dials/lines.png" />
-      <input type="radio" id="lines" name="dialStyle" value="Lines" />
-      <label for="lines">Lines</label>
+            <label for="purchasePrice">Purchase Price:</label>
+            <input type="number" id="purchasePrice" name="purchasePrice" />
 
-      <img src="images/dials/no-numerals.png" />
-      <input type="radio" id="noNumerals" name="dialStyle" value="No Numerals" />
-      <label for="noNumerals">No Numerals</label>
+            <label for="purchaseDate">Purchase Date:</label>
+            <input type="date" id="purchaseDate" name="purchaseDate" />
 
-      <img src="images/dials/roman-numerals.png" />
-      <input type="radio" id="roman" name="dialStyle" value="Roman Numerals" />
-      <label for="roman">Roman Numerals</label>
+            <label for="seller">Seller:</label>
+            <input type="text" id="seller" name="seller" />
 
-      <img src="images/dials/other.png" />
-      <input type="radio" id="other" name="dialStyle" value="Other" />
-      <label for="other">Other</label>
-    </div>
-    <!--Dial Color-->
-    <label for="dialColor">Dial Color/Finish:</label>
-    <select name="dialColor" id="dialColor">
-      <option value selected disabled>-- Select a Dial Color
-        --</option>
-      <!--Keeps first option in data set from defaulting-->
-      <% dialColor.forEach(color => { %>
-      <option value="<%= color %>"><%= color %></option>
-      <% }); %>
-    </select>
+            <label>Original Box Included?</label>
+            <div class="radio-group">
+                <input type="radio" id="boxYes" name="box" value="true" required />
+                <label for="boxYes">Yes</label>
 
-    <h2>Strap/Bracelet</h2>
-    <!--Bracelet Material-->
-    <select name="braceletMaterial" id="braceletMaterial">
-      <option value selected disabled>-- Select Bracelet Material
-        --</option>
-      <% braceletMaterial.forEach(material => { %>
-      <option value="<%= material %>"><%= material %></option>
-      <% }); %>
-    </select>
+                <input type="radio" id="boxNo" name="box" value="false" required />
+                <label for="boxNo">No</label>
+            </div>
 
-    <!--Bracelet Color-->
-    <select name="braceletColor" id="braceletColor">
-      <option value selected disabled>-- Select Bracelet Color
-        --</option>
-      <% braceletColor.forEach(color => { %>
-      <option value="<%= color %>"><%= color %></option>
-      <% }); %>
-    </select>
+            <label>Original Papers Included?</label>
+            <div class="radio-group">
+                <input type="radio" id="papersYes" name="papers" value="true" required />
+                <label for="papersYes">Yes</label>
 
-    <h2>Movement</h2>
-    <div class="radio-group">
-      <% movement.forEach(movement => { %>
-      <label>
-        <input type="radio" name="movement" value="<%= movement %>">
-        <%= movement %>
-      </label>
-      <% }); %>
-    </div>
-    <h2>Function</h2>
-    <div class="checkbox-group">
-      <% watchFunctions.forEach(func => { %>
-      <label>
-        <input type="checkbox" name="watchFunctions[]" value="<%= func %>">
-        <%= func %>
-      </label>
-      <% }); %>
-    </div>
+                <input type="radio" id="papersNo" name="papers" value="false" required />
+                <label for="papersNo">No</label>
+            </div>
+        </div>
 
-    <h2>Other</h2>
-    <div class="checkbox-group">
-      <% specialFeatures.forEach(feature => { %>
-      <label>
-        <input type="checkbox" name="specialFeatures[]" value="<%= feature %>">
-        <%= feature %>
-      </label>
-      <% }); %>
-    </div>
+        <div class="container">
+            <h2>Case</h2>
+            <label for="caseDiameter">Case Diameter (mm):</label>
+            <input type="number" id="caseDiameter" name="caseDiameter" value="mm" />
+            <label for="caseMaterial">Case Material:</label>
+            <select name="caseMaterial" id="caseMaterial">
+                <option value selected disabled>-- Select Case Material --</option>
+                <% caseMaterial.forEach(material=> { %>
+                    <option value="<%= material %>">
+                        <%= material %>
+                    </option>
+                    <% }); %>
+            </select>
+            <label for="bezelMaterial">Bezel Material:</label>
+            <select name="bezelMaterial" id="bezelMaterial">
+                <option value selected disabled>-- Select Bezel Material --</option>
+                <% bezelMaterial.forEach(material=> { %>
+                    <option value="<%= material %>">
+                        <%= material %>
+                    </option>
+                    <% }); %>
+            </select>
+            <label for="crystalMaterial">Crystal Material:</label>
+            <select name="crystalMaterial">
+                <option value="" disabled selected>-- Select Crystal Material --</option>
+                <% crystalMaterial.forEach(material=> { %>
+                    <option value="<%= material %>">
+                        <%= material %>
+                    </option>
+                    <% }); %>
+            </select>
+            <label for="waterResistance">Water Resistance (ATM):</label>
+            <input type="number" id="waterResistance" name="waterResistance" value="ATM" />
+        </div>
 
-    <h2>Notes</h2>
+        <div class="container">
+            <h2>Dial</h2>
+            <label>Dial Style:</label>
+            <div class="radio-group">
+                <input type="radio" id="arabic" name="dialStyle" value="Arabic Numerals" />
+                <label for="arabic">Arabic Numerals</label>
 
-    <button type="submit">Add Watch</button>
-  </form>
+                <input type="radio" id="gemstones" name="dialStyle" value="Gemstones" />
+                <label for="gemstones">Gemstones</label>
 
-  <a href="/watches">Back to Watch List</a>
+                <input type="radio" id="lines" name="dialStyle" value="Lines" />
+                <label for="lines">Lines</label>
+
+                <input type="radio" id="noNumerals" name="dialStyle" value="No Numerals" />
+                <label for="noNumerals">No Numerals</label>
+
+                <input type="radio" id="roman" name="dialStyle" value="Roman Numerals" />
+                <label for="roman">Roman Numerals</label>
+
+                <input type="radio" id="other" name="dialStyle" value="Other" />
+                <label for="other">Other</label>
+            </div>
+            <label for="dialColor">Dial Color/Finish:</label>
+            <select name="dialColor" id="dialColor">
+                <option value selected disabled>-- Select a Dial Color
+                    --</option>
+                <% dialColor.forEach(color=> { %>
+                    <option value="<%= color %>">
+                        <%= color %>
+                    </option>
+                    <% }); %>
+            </select>
+        </div>
+
+        <div class="container">
+            <h2>Strap/Bracelet</h2>
+
+            <select name="braceletMaterial" id="braceletMaterial">
+                <option value selected disabled>-- Select Bracelet Material
+                    --</option>
+                <% braceletMaterial.forEach(material=> { %>
+                    <option value="<%= material %>">
+                        <%= material %>
+                    </option>
+                    <% }); %>
+            </select>
+
+            <select name="braceletColor" id="braceletColor">
+                <option value selected disabled>-- Select Bracelet Color
+                    --</option>
+                <% braceletColor.forEach(color=> { %>
+                    <option value="<%= color %>">
+                        <%= color %>
+                    </option>
+                    <% }); %>
+            </select>
+        </div>
+
+        <div class="container">
+            <h2>Movement</h2>
+            <div class="radio-group">
+                <% movement.forEach(movement=> { %>
+                    <label>
+                        <input type="radio" name="movement" value="<%= movement %>">
+                        <%= movement %>
+                    </label>
+                    <% }); %>
+            </div>
+            </div>
+        
+            <div class="container">
+                <h2>Function</h2>
+                <div class="checkbox-group">
+                    <% watchFunctions.forEach(func=> { %>
+                        <label>
+                            <input type="checkbox" name="watchFunctions[]" value="<%= func %>">
+                            <%= func %>
+                        </label>
+                        <% }); %>
+                </div>
+            </div>
+        
+            <div class="container">
+                <h2>Other</h2>
+                <div class="checkbox-group">
+                    <% specialFeatures.forEach(feature=> { %>
+                        <label>
+                            <input type="checkbox" name="specialFeatures[]" value="<%= feature %>">
+                            <%= feature %>
+                        </label>
+                        <% }); %>
+                </div>
+            </div>
+        
+            <div class="container">
+                <h2>Notes</h2>
+                <div class="container">
+                    <input type="text" id="notes" name="notes" />
+                    <label for="notes"></label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn add-watch">Add Watch</button>
+    </form>
 </body>
 
 </html>

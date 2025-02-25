@@ -1,116 +1,80 @@
-/* General Styles */
+@import url("global.css");
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Raleway:wght@300;600&family=Montserrat:wght@300;700&display=swap');
+
 body {
-    font-family: "Garamond", "Didot", serif;
+    font-family: "Arial", sans-serif;
     margin: 0;
     padding: 0;
-    background: #f8f5f0;
-    color: #2c2c2c;
-}
-
-/* Header */
-.tempusheader {
-    background: url('/public/images/home/home-bg.jpg') no-repeat center center fixed;
-    background-size: cover;
-    height: 50vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    position: relative;
-}
-
-.overlay {
-    background: rgba(0, 0, 0, 0.5);
-    padding: 40px;
-    border-radius: 10px;
-}
-
-.overlay h1 {
-    font-size: 40px;
+    background: #121212;
     color: #fff;
-    margin: 0;
 }
 
-.overlay p {
-    font-size: 18px;
-    color: #ddd;
-    margin: 10px 0;
-}
-
-/* Registration Form */
-.register-form-container {
+.register-container {
+    background: url('/images/register.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 50vh;
-    padding: 40px 20px;
 }
 
-.register-form {
-    background: white;
+.register-overlay {
+    background: rgba(0, 0, 0, 0.75);
     padding: 40px;
-    border-radius: 10px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
+    border-radius: 4px;
+    color: white;
+    width: 350px;
     text-align: center;
 }
 
-.register-form h2 {
-    font-size: 26px;
-    margin-bottom: 20px;
-}
-
-.register-form label {
-    display: block;
+.input-group {
+    margin: 15px 0;
     text-align: left;
-    font-weight: bold;
-    margin: 10px 0 5px;
 }
 
-.register-form input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #b2955a;
-    border-radius: 6px;
+.input-group label {
+    display: block;
     font-size: 16px;
-    background: #f8f5f0;
+    margin-bottom: 5px;
+    color: #ddd;
 }
 
-.btn {
-    display: inline-block;
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid #444;
+    background: #1e1e1e;
+    color: #fff;
+}
+
+button.btn {
     width: 100%;
     padding: 12px;
     font-size: 18px;
-    text-decoration: none;
-    color: white;
-    background: #b2955a;
-    border-radius: 6px;
     border: none;
+    background: #ffffff;
+    color: #121212;
+    border-radius: 4px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     margin-top: 20px;
 }
 
-.btn:hover {
-    background: #8e7b48;
+button.btn:hover {
+    background: #cccccc;
 }
 
-.link {
-    color: #b2955a;
+.login-link {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.login-link a {
+    color: #ffffff;
     text-decoration: none;
-    font-weight: bold;
 }
 
-.link:hover {
-    color: #8e7b48;
-}
-
-/* Footer */
-footer {
-    background: #222;
-    color: white;
-    text-align: center;
-    padding: 20px 0;
-    margin-top: 40px;
+.login-link a:hover {
+    text-decoration: underline;
 }

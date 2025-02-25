@@ -5,140 +5,173 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Edit Watch</title>
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/new.css">
 </head>
 
 <body>
-  <h1>Edit Watch</h1>
-
   <form action="/watches/<%= watch._id %>?_method=PUT" method="POST">
-    <h2>Basics</h2>
+    <h1>Edit Watch</h1>
 
-    <label for="brand">Brand:</label>
-    <select name="brand" id="brand">
-      <% brands.forEach(brand => { %>
-      <option value="<%= brand %>" <%= watch.brand === brand ? "selected" : "" %>><%= brand %></option>
-      <% }); %>
-    </select>
+    <div class="container">
+      <h2>Basics</h2>
 
-    <label for="model">Model:</label>
-    <input type="text" id="model" name="model" value="<%= watch.model %>" required />
+      <label for="brand">Brand:</label>
+      <select name="brand" id="brand">
+        <% brands.forEach(brand=> { %>
+          <option value="<%= brand %>" <%=watch.brand===brand ? "selected" : "" %>><%= brand %>
+          </option>
+          <% }); %>
+      </select>
 
-    <label for="refNumber">Reference Number:</label>
-    <input type="text" id="refNumber" name="refNumber" value="<%= watch.refNumber || '' %>" />
+      <label for="model">Model:</label>
+      <input type="text" id="model" name="model" value="<%= watch.model %>" required />
 
-    <label for="serialNumber">Serial Number:</label>
-    <input type="text" id="serialNumber" name="serialNumber" value="<%= watch.serialNumber || '' %>" />
+      <label for="refNumber">Reference Number:</label>
+      <input type="text" id="refNumber" name="refNumber" value="<%= watch.refNumber || '' %>" />
 
-    <label>Gender:</label>
-    <div class="radio-group">
-      <% ["Men's", "Women's", "Unisex"].forEach(genderOption => { %>
-      <input type="radio" id="gender-<%= genderOption %>" name="gender" value="<%= genderOption %>" <%= watch.gender === genderOption ? "checked" : "" %> />
-      <label for="gender-<%= genderOption %>"><%= genderOption %></label>
-      <% }); %>
+      <label for="serialNumber">Serial Number:</label>
+      <input type="text" id="serialNumber" name="serialNumber" value="<%= watch.serialNumber || '' %>" />
+
+      <label>Gender:</label>
+      <div class="radio-group">
+        <% ["Men's", "Women's" , "Unisex" ].forEach(genderOption=> { %>
+          <input type="radio" id="gender-<%= genderOption %>" name="gender" value="<%= genderOption %>"
+            <%=watch.gender===genderOption ? "checked" : "" %> />
+          <label for="gender-<%= genderOption %>">
+            <%= genderOption %>
+          </label>
+          <% }); %>
+      </div>
     </div>
 
-    <h2>Purchase Details</h2>
+    <div class="container">
+      <h2>Purchase Details</h2>
 
-    <label for="purchasePrice">Purchase Price:</label>
-    <input type="number" id="purchasePrice" name="purchasePrice" value="<%= watch.purchasePrice || '' %>" step="0.01" />
+      <label for="purchasePrice">Purchase Price:</label>
+      <input type="number" id="purchasePrice" name="purchasePrice" value="<%= watch.purchasePrice || '' %>"
+        step="0.01" />
 
-    <label for="purchaseDate">Purchase Date:</label>
-    <input type="date" id="purchaseDate" name="purchaseDate" value="<%= watch.purchaseDate ? new Date(watch.purchaseDate).toISOString().split('T')[0] : '' %>" />
+      <label for="purchaseDate">Purchase Date:</label>
+      <input type="date" id="purchaseDate" name="purchaseDate"
+        value="<%= watch.purchaseDate ? new Date(watch.purchaseDate).toISOString().split('T')[0] : '' %>" />
 
-    <label for="seller">Seller:</label>
-    <input type="text" id="seller" name="seller" value="<%= watch.seller || '' %>" />
+      <label for="seller">Seller:</label>
+      <input type="text" id="seller" name="seller" value="<%= watch.seller || '' %>" />
 
-    <!-- Box -->
-    <label>Original Box Included?</label>
-    <div class="radio-group">
-      <input type="radio" id="boxYes" name="box" value="true" <%= watch.box === true ? "checked" : "" %> />
-      <label for="boxYes">Yes</label>
+      <label>Original Box Included?</label>
+      <div class="radio-group">
+        <input type="radio" id="boxYes" name="box" value="true" <%=watch.box===true ? "checked" : "" %> />
+        <label for="boxYes">Yes</label>
 
-      <input type="radio" id="boxNo" name="box" value="false" <%= watch.box === false ? "checked" : "" %> />
-      <label for="boxNo">No</label>
+        <input type="radio" id="boxNo" name="box" value="false" <%=watch.box===false ? "checked" : "" %> />
+        <label for="boxNo">No</label>
+      </div>
+
+      <label>Original Papers Included?</label>
+      <div class="radio-group">
+        <input type="radio" id="papersYes" name="papers" value="true" <%=watch.papers===true ? "checked" : "" %> />
+        <label for="papersYes">Yes</label>
+
+        <input type="radio" id="papersNo" name="papers" value="false" <%=watch.papers===false ? "checked" : "" %> />
+        <label for="papersNo">No</label>
+      </div>
     </div>
 
-    <!-- Papers -->
-    <label>Original Papers Included?</label>
-    <div class="radio-group">
-      <input type="radio" id="papersYes" name="papers" value="true" <%= watch.papers === true ? "checked" : "" %> />
-      <label for="papersYes">Yes</label>
+    <div class="container">
+      <h2>Case</h2>
 
-      <input type="radio" id="papersNo" name="papers" value="false" <%= watch.papers === false ? "checked" : "" %> />
-      <label for="papersNo">No</label>
+      <label for="caseDiameter">Case Diameter (mm):</label>
+      <input type="number" id="caseDiameter" name="caseDiameter" value="<%= watch.caseDiameter || '' %>" />
+
+      <label for="caseMaterial">Case Material:</label>
+      <select name="caseMaterial">
+        <% caseMaterial.forEach(material=> { %>
+          <option value="<%= material %>" <%=watch.caseMaterial===material ? "selected" : "" %>><%= material %>
+          </option>
+          <% }); %>
+      </select>
+
+      <label for="bezelMaterial">Bezel Material:</label>
+      <select name="bezelMaterial">
+        <% bezelMaterial.forEach(material=> { %>
+          <option value="<%= material %>" <%=watch.bezelMaterial===material ? "selected" : "" %>><%= material %>
+          </option>
+          <% }); %>
+      </select>
+
+      <label for="crystalMaterial">Crystal Material:</label>
+      <select name="crystalMaterial">
+        <% crystalMaterial.forEach(material=> { %>
+          <option value="<%= material %>" <%=watch.crystalMaterial===material ? "selected" : "" %>><%= material %>
+          </option>
+          <% }); %>
+      </select>
+
+      <label for="waterResistance">Water Resistance (ATM):</label>
+      <input type="number" id="waterResistance" name="waterResistance" value="<%= watch.waterResistance || '' %>" />
     </div>
 
-    <h2>Case</h2>
+    <div class="container">
+      <h2>Dial</h2>
 
-    <label for="caseDiameter">Case Diameter (mm):</label>
-    <input type="number" id="caseDiameter" name="caseDiameter" value="<%= watch.caseDiameter || '' %>" />
+      <label>Dial Style:</label>
+      <div class="radio-group">
+        <% ["Arabic Numerals", "Gemstones" , "Lines" , "No Numerals" , "Roman Numerals" , "Other" ].forEach(style=> { %>
+          <input type="radio" id="dialStyle-<%= style %>" name="dialStyle" value="<%= style %>"
+            <%=watch.dialStyle===style ? "checked" : "" %> />
+          <label for="dialStyle-<%= style %>">
+            <%= style %>
+          </label>
+          <% }); %>
+      </div>
 
-    <label for="caseMaterial">Case Material:</label>
-    <select name="caseMaterial">
-      <% caseMaterial.forEach(material => { %>
-      <option value="<%= material %>" <%= watch.caseMaterial === material ? "selected" : "" %>><%= material %></option>
-      <% }); %>
-    </select>
-
-    <label for="bezelMaterial">Bezel Material:</label>
-    <select name="bezelMaterial">
-      <% bezelMaterial.forEach(material => { %>
-      <option value="<%= material %>" <%= watch.bezelMaterial === material ? "selected" : "" %>><%= material %></option>
-      <% }); %>
-    </select>
-
-    <label for="crystalMaterial">Crystal Material:</label>
-    <select name="crystalMaterial">
-      <% crystalMaterial.forEach(material => { %>
-      <option value="<%= material %>" <%= watch.crystalMaterial === material ? "selected" : "" %>><%= material %></option>
-      <% }); %>
-    </select>
-
-    <label for="waterResistance">Water Resistance (ATM):</label>
-    <input type="number" id="waterResistance" name="waterResistance" value="<%= watch.waterResistance || '' %>" />
-
-    <h2>Dial</h2>
-
-    <label>Dial Style:</label>
-    <div class="radio-group">
-      <% ["Arabic Numerals", "Gemstones", "Lines", "No Numerals", "Roman Numerals", "Other"].forEach(style => { %>
-      <input type="radio" id="dialStyle-<%= style %>" name="dialStyle" value="<%= style %>" <%= watch.dialStyle === style ? "checked" : "" %> />
-      <label for="dialStyle-<%= style %>"><%= style %></label>
-      <% }); %>
+      <label for="dialColor">Dial Color/Finish:</label>
+      <select name="dialColor">
+        <% dialColor.forEach(color=> { %>
+          <option value="<%= color %>" <%=watch.dialColor===color ? "selected" : "" %>><%= color %>
+          </option>
+          <% }); %>
+      </select>
     </div>
 
-    <label for="dialColor">Dial Color/Finish:</label>
-    <select name="dialColor">
-      <% dialColor.forEach(color => { %>
-      <option value="<%= color %>" <%= watch.dialColor === color ? "selected" : "" %>><%= color %></option>
-      <% }); %>
-    </select>
-
-    <h2>Movement</h2>
-    <div class="radio-group">
-      <% movement.forEach(movementOption => { %>
-      <input type="radio" name="movement" value="<%= movementOption %>" <%= watch.movement === movementOption ? "checked" : "" %> />
-      <%= movementOption %>
-      <% }); %>
+    <div class="container">
+      <h2>Movement</h2>
+      <div class="radio-group">
+        <% movement.forEach(movementOption=> { %>
+          <input type="radio" name="movement" value="<%= movementOption %>" <%=watch.movement===movementOption
+            ? "checked" : "" %> />
+          <%= movementOption %>
+            <% }); %>
+      </div>
     </div>
 
-    <h2>Functions & Special Features</h2>
-    <label>Watch Functions:</label>
-    <% watchFunctions.forEach(func => { %>
-    <input type="checkbox" name="watchFunctions[]" value="<%= func %>" <%= watch.watchFunctions.includes(func) ? "checked" : "" %> />
-    <%= func %>
-    <% }); %>
+    <div class="container">
+      <h2>Functions & Special Features</h2>
+      <label>Watch Functions:</label>
+      <div class="checkbox-group">
+        <% watchFunctions.forEach(func=> { %>
+          <input type="checkbox" name="watchFunctions[]" value="<%= func %>" <%=watch.watchFunctions.includes(func)
+            ? "checked" : "" %> />
+          <%= func %>
+            <% }); %>
+      </div>
 
-    <label>Special Features:</label>
-    <% specialFeatures.forEach(feature => { %>
-    <input type="checkbox" name="specialFeatures[]" value="<%= feature %>" <%= watch.specialFeatures.includes(feature) ? "checked" : "" %> />
-    <%= feature %>
-    <% }); %>
+      <label>Special Features:</label>
+      <div class="checkbox-group">
+        <% specialFeatures.forEach(feature=> { %>
+          <input type="checkbox" name="specialFeatures[]" value="<%= feature %>"
+            <%=watch.specialFeatures.includes(feature) ? "checked" : "" %> />
+          <%= feature %>
+            <% }); %>
+      </div>
+    </div>
 
     <h2>Other</h2>
     <textarea name="notes"><%= watch.notes || '' %></textarea>
 
     <button type="submit">Update Watch</button>
+    <button type="cancel">Cancel</button>
   </form>
 
   <a href="/watches/<%= watch._id %>">Cancel</a>

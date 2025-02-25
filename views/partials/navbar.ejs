@@ -2,4 +2,9 @@
     <a href="/">Home</a>
     <a href="/watches">Watch Collection</a>
     <a href="/new">Add Watch</a>
+    <% if (user) { %>
+        <a href="/auth/logout">Logout</a>
+    <% } else { %>
+        <a href="/auth/login">Login</a>
+    <% } %>
 </nav>

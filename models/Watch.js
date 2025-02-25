@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 const specialFeatures = require("../data/other");
 
-// Watch Schema
 const watchSchema = mongoose.Schema({
 
     // Basics
     brand: { type: String, required: true },
     model: { type: String, required: true },
+    user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
     refNumber: { type: String, required: false, unique: false, sparse: true },
     serialNumber: { type: String, required: false, unique: true },
 
@@ -39,17 +39,10 @@ const watchSchema = mongoose.Schema({
     braceletMaterial: { type: String, required: false },
     braceletColor: { type: String, required: false },
 
-    // Clasp
-    clasp: { type: String, required: false },
-    claspMaterial: { type: String, required: false },
-
     // Movement
     watchFunctions: { type: [String], default: [] },
     specialFeatures: { type: [String], default: [] },
     movement: { type: String, required: false },
-    baseCaliber: { type: String, required: false },
-    powerReserve: { type: Number, required: false, min: 0 },
-    numberOfJewels: { type: Number, required: false, min: 0 },
 
     // Other
     specialFeatures: { type: [String], default: [] },
@@ -57,13 +50,22 @@ const watchSchema = mongoose.Schema({
     // Notes
     notes: { type: String, required: false },
 
+    /* To be added 2.0
+    // Clasp
+    clasp: { type: String, required: false },
+    claspMaterial: { type: String, required: false },
+
+    // Movement
+    baseCaliber: { type: String, required: false },
+    powerReserve: { type: Number, required: false, min: 0 },
+    numberOfJewels: { type: Number, required: false, min: 0 },
+
     // Timestamps
     createdAt: { type: Date, default: Date.now }
+    */
 });
 
-// Full-text search index for brand, model, and serial number
 watchSchema.index({ brand: "text", model: "text", serialNumber: "text" });
 
-// Create and export the model
 const Watch = mongoose.model("Watch", watchSchema);
 module.exports = Watch;

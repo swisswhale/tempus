@@ -2,66 +2,35 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tempus - Watch Collection</title>
-  <link rel="stylesheet" href="/css/home.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tempus - Home</title>
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/home.css">
 </head>
 
 <body>
+    <header class="navbar">
+        <nav>
+            <% if (user) { %>
+                <a href="/auth/logout">Logout</a>
+                <% } else { %>
+                    <a href="/auth/login">Login</a>
+                    <% } %>
+        </nav>
+    </header>
 
-  <!-- Header -->
-  <header class="tempusheader">
-    <div class="overlay">
-      <h1>Tempus</h1>
-      <p>Luxury Timepiece Collection</p>
-      <a href="/watches" class="btn">View Collection</a>
-      <a href="/login" class="btn btn-secondary">Login</a>
-    </div>
-  </header>
+    <section class="hero-section">
+        <h1>Welcome to Tempus</h1>
+        <p>Track, manage, and cherish your timepieces with elegance.</p>
+        <% if (!user) { %>
+            <a href="/auth/register" class="btn hero-btn">Get Started</a>
+        <% } %>
+    </section>
 
-  <!-- About Section -->
-  <section class="section about">
-    <div class="container">
-      <h2>About Tempus</h2>
-      <p>Tempus is the ultimate luxury watch tracking tool, designed for collectors who appreciate fine craftsmanship. 
-        Organize, manage, and admire your collection in one elegant interface.</p>
-    </div>
-  </section>
-
-  <!-- Features Section -->
-  <section class="section features">
-    <div class="container">
-      <h2>Exclusive Features</h2>
-      <div class="features-grid">
-        <div class="feature">
-          <h3>Detailed Catalog</h3>
-          <p>Store every detail of your timepieces, from movement type to provenance.</p>
-        </div>
-        <div class="feature">
-          <h3>Real-Time Valuation</h3>
-          <p>Stay updated with the latest market prices of your collection.</p>
-        </div>
-        <div class="feature">
-          <h3>Historical Tracking</h3>
-          <p>Track purchase history, appraisals, and previous ownership.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Call to Action -->
-  <section class="section cta">
-    <div class="container">
-      <h2>Start Your Collection</h2>
-      <a href="/new" class="btn">Add Your First Watch</a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Tempus. All Rights Reserved.</p>
-  </footer>
+    <footer class="footer">
+        <p>&copy; 2024 Tempus. All Rights Reserved.</p>
+    </footer>
 
 </body>
 

@@ -2,144 +2,160 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= watch.brand %> - <%= watch.model %></title>
-    <link rel="stylesheet" href="/css/details.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= watch.brand %>
+      <%= watch.model %>
+  </title>
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/details.css">
 </head>
 
 <body>
 
-    <%- include('partials/navbar.ejs') %>
 
-    <div class="container">
-        <div class="header">
-            <h1 class="watch-title"><%= watch.brand %> - <%= watch.model %></h1>
-        </div>
-
-        <div class="watch-details">
-
-            <!-- Basic Details -->
-            <section class="details-section">
-                <h2>Basic Details</h2>
-                <div class="info-list">
-                    <div class="info-item">
-                        <strong>Reference Number:</strong>
-                        <p><%= watch.refNumber || "N/A" %></p>
-                    </div>
-                    <div class="info-item">
-                        <strong>Serial Number:</strong>
-                        <p><%= watch.serialNumber || "N/A" %></p>
-                    </div>
-                    <div class="info-item">
-                        <strong>Gender:</strong>
-                        <p><%= watch.gender || "N/A" %></p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Purchase Information -->
-            <section class="details-section">
-                <h2>Purchase Information</h2>
-                <div class="info-list">
-                    <div class="info-item">
-                        <strong>Price:</strong>
-                        <p>$<%= watch.purchasePrice ? watch.purchasePrice.toLocaleString() : "0.00" %></p>
-                    </div>
-                    <div class="info-item">
-                        <strong>Purchase Date:</strong>
-                        <p><%= watch.purchaseDate ? new Date(watch.purchaseDate).toDateString() : "N/A" %></p>
-                    </div>
-                    <div class="info-item">
-                        <strong>Seller:</strong>
-                        <p><%= watch.seller || "N/A" %></p>
-                    </div>
-                    <div class="info-item">
-                        <strong>Original Box:</strong>
-                        <p><%= watch.box === true ? "Yes" : watch.box === false ? "No" : "N/A" %></p>
-                    </div>
-                    <div class="info-item">
-                        <strong>Original Papers:</strong>
-                        <p><%= watch.papers === true ? "Yes" : watch.papers === false ? "No" : "N/A" %></p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Specifications -->
-            <section class="details-section">
-                <h2>Specifications</h2>
-                <div class="info-list">
-                    <div class="info-item">
-                        <strong>Case Material:</strong>
-                        <p><%= watch.caseMaterial || "N/A" %></p>
-                    </div>
-                    <div class="info-item">
-                        <strong>Bezel Material:</strong>
-                        <p><%= watch.bezelMaterial || "N/A" %></p>
-                    </div>
-                    <div class="info-item">
-                        <strong>Case Diameter:</strong>
-                        <p><%= watch.caseDiameter ? watch.caseDiameter + " mm" : "N/A" %></p>
-                    </div>
-                    <div class="info-item">
-                        <strong>Crystal Material:</strong>
-                        <p><%= watch.crystalMaterial || "N/A" %></p>
-                    </div>
-                    <div class="info-item">
-                        <strong>Water Resistance:</strong>
-                        <p><%= watch.waterResistance ? watch.waterResistance + " ATM" : "N/A" %></p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Dial & Bracelet -->
-            <section class="details-section">
-                <h2>Dial & Bracelet</h2>
-                <div class="info-list">
-                    <div class="info-item">
-                        <strong>Dial Style:</strong>
-                        <p><%= watch.dialStyle || "N/A" %></p>
-                    </div>
-                    <div class="info-item">
-                        <strong>Dial Color:</strong>
-                        <p><%= watch.dialColor || "N/A" %></p>
-                    </div>
-                    <div class="info-item">
-                        <strong>Bracelet Material:</strong>
-                        <p><%= watch.braceletMaterial || "N/A" %></p>
-                    </div>
-                    <div class="info-item">
-                        <strong>Bracelet Color:</strong>
-                        <p><%= watch.braceletColor || "N/A" %></p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Movement & Features -->
-            <section class="details-section">
-                <h2>Movement & Features</h2>
-                <div class="info-list">
-                    <div class="info-item">
-                        <strong>Movement:</strong>
-                        <p><%= watch.movement || "N/A" %></p>
-                    </div>
-                    <div class="info-item">
-                        <strong>Functions:</strong>
-                        <p><%= watch.watchFunctions && watch.watchFunctions.length > 0 ? watch.watchFunctions.join(", ") : "None" %></p>
-                    </div>
-                    <div class="info-item">
-                        <strong>Special Features:</strong>
-                        <p><%= watch.specialFeatures && watch.specialFeatures.length > 0 ? watch.specialFeatures.join(", ") : "None" %></p>
-                    </div>
-                </div>
-            </section>
-
-            <div class="action-buttons">
-                <a href="/watches" class="button">Back to Watch List</a>
-                <a href="/watches/<%= watch._id %>/edit" class="button">Edit Watch</a>
-            </div>
-        </div>
+  <main class="details-container">
+    <div class="watch-header">
+      <h1>
+        <%= watch.brand %>
+          <%= watch.model %>
+      </h1>
     </div>
+
+    <% if (watch.imageUrl) { %>
+      <div class="watch-image">
+        <img src="<%= watch.imageUrl %>" alt="<%= watch.brand %> <%= watch.model %>">
+      </div>
+      <% } %>
+
+        <section class="watch-info">
+          <div class="info-columns">
+
+            <div class="info-section">
+              <h2>Basic Details</h2>
+              <p><strong>Reference Number:</strong>
+                <%= watch.refNumber || "N/A" %>
+              </p>
+              <p><strong>Serial Number:</strong>
+                <%= watch.serialNumber || "N/A" %>
+              </p>
+              <p><strong>Gender:</strong>
+                <%= watch.gender || "Unspecified" %>
+              </p>
+            </div>
+
+            <div class="info-section">
+              <h2>Purchase Info</h2>
+              <p><strong>Purchase Price:</strong> $<%= watch.purchasePrice ? watch.purchasePrice.toLocaleString()
+                  : "0.00" %>
+              </p>
+              <p><strong>Purchase Date:</strong>
+                <%= watch.purchaseDate ? new Date(watch.purchaseDate).toDateString() : "N/A" %>
+              </p>
+              <p><strong>Seller:</strong>
+                <%= watch.seller || "Unknown" %>
+              </p>
+              <p><strong>Box:</strong>
+                <%= watch.box ? "Yes" : "No" %>
+              </p>
+              <p><strong>Papers:</strong>
+                <%= watch.papers ? "Yes" : "No" %>
+              </p>
+            </div>
+
+            <div class="info-section">
+              <h2>Case & Dial</h2>
+              <p><strong>Case Material:</strong>
+                <%= watch.caseMaterial || "N/A" %>
+              </p>
+              <p><strong>Bezel Material:</strong>
+                <%= watch.bezelMaterial || "N/A" %>
+              </p>
+              <p><strong>Case Diameter:</strong>
+                <%= watch.caseDiameter ? watch.caseDiameter + " mm" : "N/A" %>
+              </p>
+              <p><strong>Crystal Material:</strong>
+                <%= watch.crystalMaterial || "N/A" %>
+              </p>
+              <p><strong>Water Resistance:</strong>
+                <%= watch.waterResistance ? watch.waterResistance + " ATM" : "N/A" %>
+              </p>
+              <p><strong>Dial Style:</strong>
+                <%= watch.dialStyle || "N/A" %>
+              </p>
+              <p><strong>Dial Color:</strong>
+                <%= watch.dialColor || "N/A" %>
+              </p>
+            </div>
+          </div>
+
+          <div class="info-columns">
+            <div class="info-section">
+              <h2>Bracelet</h2>
+              <p><strong>Material:</strong>
+                <%= watch.braceletMaterial || "N/A" %>
+              </p>
+              <p><strong>Color:</strong>
+                <%= watch.braceletColor || "N/A" %>
+              </p>
+              <p><strong>Clasp Type:</strong>
+                <%= watch.clasp || "N/A" %>
+              </p>
+              <p><strong>Clasp Material:</strong>
+                <%= watch.claspMaterial || "N/A" %>
+              </p>
+            </div>
+
+            <div class="info-section">
+              <h2>Movement & Features</h2>
+              <p><strong>Movement:</strong>
+                <%= watch.movement || "N/A" %>
+              </p>
+              <p><strong>Base Caliber:</strong>
+                <%= watch.baseCaliber || "N/A" %>
+              </p>
+              <p><strong>Power Reserve:</strong>
+                <%= watch.powerReserve ? watch.powerReserve + " hours" : "N/A" %>
+              </p>
+              <p><strong>Jewels:</strong>
+                <%= watch.numberOfJewels ? watch.numberOfJewels + " jewels" : "N/A" %>
+              </p>
+              <p><strong>Functions:</strong>
+                <%= watch.watchFunctions && watch.watchFunctions.length> 0 ? watch.watchFunctions.join(", ") : "None" %>
+              </p>
+              <p><strong>Special Features:</strong>
+                <%= watch.specialFeatures && watch.specialFeatures.length> 0 ? watch.specialFeatures.join(", ") : "None"
+                  %>
+              </p>
+            </div>
+
+            <div class="info-section">
+              <h2>Additional Notes</h2>
+              <p>
+                <%= watch.notes || "No additional notes." %>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <div class="actions">
+          <a href="/watches" class="btn">Back to Collection</a>
+          <a href="/watches/<%= watch._id %>/edit" class="btn edit">Edit Watch</a>
+          <a href="#" class="btn delete" onclick="confirmDelete('<%= watch._id %>')">Delete Watch</a>
+
+          <form id="delete-form" action="/watches/<%= watch._id %>?_method=DELETE" method="POST" style="display: none;">
+          </form>
+
+          <script>
+            function confirmDelete(watchId) {
+              if (confirm('Are you sure you want to delete this watch?')) {
+                document.getElementById('delete-form').submit();
+              }
+            }
+          </script>
+        </div>
+  </main>
 
 </body>
 

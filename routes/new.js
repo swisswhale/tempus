@@ -47,6 +47,13 @@ router.get("/new", (req, res) => {
 // POST route
 router.post("/watches", async (req, res) => {
     try {
+        if (!req.session.user) {
+            return res.status(401).send("Unauthorized: Please log in.");
+        }
+
+        req.body.user = req.session.user._id; // Ensure the user is assigned
+
+        // Convert checkboxes into arrays
         req.body.watchFunctions = req.body["watchFunctions[]"]
             ? Array.isArray(req.body["watchFunctions[]"])
                 ? req.body["watchFunctions[]"]
@@ -70,8 +77,6 @@ router.post("/watches", async (req, res) => {
         console.error("Error saving watch:", err);
         res.status(500).send("Error adding watch.");
     }
-
-    console.log("Request Body:", req.body);
 });
 
 module.exports = router;
