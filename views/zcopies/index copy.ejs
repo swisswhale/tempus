@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Watch Collection</title>
+    </head>
+   
+    <body>
+        <h1>My Watch Collection</h1>
+
+        <!-- Add New Watch Button -->
+        <a href="/new"><button>Add New Watch</button></a>
+
+        <!-- Display Watches -->
+        <% if (watches.length > 0) { %>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Brand</th>
+                    <th>Model</th>
+                    <th>Reference Number</th>
+                    <th>Case Material</th>
+                    <th>Purchase Price</th>
+                    <th>Purchase Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% watches.forEach(watch => { %>
+                <tr>
+                    <td><%= watch.brand %></td>
+                    <td><%= watch.model %></td>
+                    <td><%= watch.refNumber || "N/A" %></td>
+                    <td><%= watch.caseMaterial %></td>
+                    <td>$<%= watch.purchasePrice ?
+                        watch.purchasePrice.toFixed(2) : "0.00" %></td>
+                    <td><%= watch.purchaseDate ? new Date(watch.purchaseDate).toISOString().split('T')[0] : "N/A"
+                        %></td>
+                    <td>
+                        <a href="/watches/<%= watch._id %>">View</a> |
+                        <a
+                            href="/watches/<%= watch._id %>/edit">Edit</a>
+                        |
+                        <form action="/watches/<%= watch._id %>?_method=DELETE"
+                            method="POST" style="display:inline;">
+                            <button type="submit"
+                                onclick="return confirm('Are you sure?')">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                <% }); %>
+            </tbody>
+        </table>
+        <% } else { %>
+        <p>No watches found. <a href="/new">Add your first watch!</a></p>
+        <% } %>
+
+    </body>
+</html>
+
+<!--<a href="/watches/%= watch._id %>/edit" class="button">Edit Watch</a>-->

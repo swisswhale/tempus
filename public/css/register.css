@@ -1,0 +1,116 @@
+/* General Styles */
+body {
+    font-family: "Garamond", "Didot", serif;
+    margin: 0;
+    padding: 0;
+    background: #f8f5f0;
+    color: #2c2c2c;
+}
+
+/* Header */
+.tempusheader {
+    background: url('/public/images/home/home-bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+.overlay {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.overlay h1 {
+    font-size: 40px;
+    color: #fff;
+    margin: 0;
+}
+
+.overlay p {
+    font-size: 18px;
+    color: #ddd;
+    margin: 10px 0;
+}
+
+/* Registration Form */
+.register-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+    padding: 40px 20px;
+}
+
+.register-form {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.register-form h2 {
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+.register-form label {
+    display: block;
+    text-align: left;
+    font-weight: bold;
+    margin: 10px 0 5px;
+}
+
+.register-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #b2955a;
+    border-radius: 6px;
+    font-size: 16px;
+    background: #f8f5f0;
+}
+
+.btn {
+    display: inline-block;
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    text-decoration: none;
+    color: white;
+    background: #b2955a;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin-top: 20px;
+}
+
+.btn:hover {
+    background: #8e7b48;
+}
+
+.link {
+    color: #b2955a;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.link:hover {
+    color: #8e7b48;
+}
+
+/* Footer */
+footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+}

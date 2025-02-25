@@ -1,63 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Watch Collection</title>
-        <link rel="stylesheet" href="css/home.css">
-    </head>
-   
-    <body>
-        <h1>My Watch Collection</h1>
-
-        <!-- Add New Watch Button -->
-        <a href="/new"><button>Add New Watch</button></a>
-
-        <!-- Display Watches -->
-        <% if (watches.length > 0) { %>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Brand</th>
-                    <th>Model</th>
-                    <th>Reference Number</th>
-                    <th>Case Material</th>
-                    <th>Purchase Price</th>
-                    <th>Purchase Date</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Watch Collection</title>
+    <link rel="stylesheet" href="/css/home.css">
+</head>
+<body>
+    <div class="tempusheader">
+        <div class="overlay">
+            <h1>My Watch Collection</h1>
+            <p>Track and manage your luxury timepieces with ease.</p>
+        </div>
+    </div>
+    
+    <div class="section features">
+        <h2>Your Collection</h2>
+        <div class="features-grid">
+            <% if (watches.length > 0) { %>
                 <% watches.forEach(watch => { %>
-                <tr>
-                    <td><%= watch.brand %></td>
-                    <td><%= watch.model %></td>
-                    <td><%= watch.refNumber || "N/A" %></td>
-                    <td><%= watch.caseMaterial %></td>
-                    <td>$<%= watch.purchasePrice ?
-                        watch.purchasePrice.toFixed(2) : "0.00" %></td>
-                    <td><%= watch.purchaseDate ? new Date(watch.purchaseDate).toISOString().split('T')[0] : "N/A"
-                        %></td>
-                    <td>
-                        <a href="/watches/<%= watch._id %>">View</a> |
-                        <a
-                            href="/watches/<%= watch._id %>/edit">Edit</a>
-                        |
-                        <form action="/watches/<%= watch._id %>?_method=DELETE"
-                            method="POST" style="display:inline;">
-                            <button type="submit"
-                                onclick="return confirm('Are you sure?')">Delete</button>
-                        </form>
-                    </td>
-                </tr>
+                    <div class="feature">
+                        <h3><%= watch.brand %> - <%= watch.model %></h3>
+                        <p><strong>Reference:</strong> <%= watch.refNumber || "N/A" %></p>
+                        <p><strong>Case Material:</strong> <%= watch.caseMaterial %></p>
+                        <p><strong>Purchase Price:</strong> $<%= watch.purchasePrice ? watch.purchasePrice.toLocaleString() : "0.00" %></p>
+                        <p><strong>Purchase Date:</strong> <%= watch.purchaseDate ? new Date(watch.purchaseDate).toDateString() : "N/A" %></p>
+                        <div class="btn-group">
+                            <a href="/watches/<%= watch._id %>" class="btn">View</a>
+                            <a href="/watches/<%= watch._id %>/edit" class="btn btn-secondary">Edit</a>
+                            <form action="/watches/<%= watch._id %>?_method=DELETE" method="POST" style="display:inline;">
+                                <button type="submit" class="btn" onclick="return confirm('Are you sure?')">Delete</button>
+                            </form>
+                        </div>
+                    </div>
                 <% }); %>
-            </tbody>
-        </table>
-        <% } else { %>
-        <p>No watches found. <a href="/new">Add your first watch!</a></p>
-        <% } %>
-
-    </body>
+            <% } else { %>
+                <p>No watches found. <a href="/new" class="btn">Add your first watch!</a></p>
+            <% } %>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; <%= new Date().getFullYear() %> Tempus Watch Tracker. All rights reserved.</p>
+    </footer>
+</body>
 </html>
 
-<!--<a href="/watches/%= watch._id %>/edit" class="button">Edit Watch</a>-->
+
+You are viewing a previous version
+Restore this version to make edits
+
+Restore this version
+
+Back to latest version

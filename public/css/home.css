@@ -1,166 +1,118 @@
-/* OLD-MONEY LUXURY WATCH AESTHETIC */
-
-/* Global Styles */
+/* General Styles */
 body {
+    font-family: "Garamond", "Didot", serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f5f0; /* Ivory tone */
-    font-family: "Garamond", "Times New Roman", serif;
-    color: #2c2c2c; /* Dark charcoal */
-}
-
-/* Container */
-.container {
-    width: 85%;
-    margin: 0 auto;
-}
-
-/* Header */
-header {
-    background: #2c2c2c; /* Deep charcoal */
-    padding: 15px 0;
-}
-
-.logo {
-    font-size: 30px;
-    font-weight: bold;
-    color: gold;
-    font-family: "Didot", serif;
-    text-transform: uppercase;
-    text-align: center;
-}
-
-/* Navigation */
-nav {
-    text-align: center;
-    margin-top: 10px;
-}
-
-.nav-links {
-    list-style: none;
-    padding: 0;
-}
-
-.nav-links li {
-    display: inline;
-    margin: 0 15px;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: #f5f5f5;
-    font-size: 18px;
-    padding: 8px 12px;
-    transition: color 0.3s ease-in-out;
-}
-
-.nav-links a:hover {
-    color: gold;
-}
-
-.login-btn {
-    border: 1px solid gold;
-    padding: 8px 16px;
-    border-radius: 5px;
-}
-
-.login-btn:hover {
-    background-color: gold;
-    color: black;
-}
-
-/* Hero Section */
-.hero {
-    background: url('/images/classic-watch.jpg') no-repeat center center/cover;
-    height: 80vh;
+    background: #f8f5f0;
+    color: #2c2c2c;
+  }
+  
+  /* Header */
+  .tempusheader {
+    background: url('/public/images/home/home-bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-}
-
-.hero-content {
+    position: relative;
+  }
+  
+  .overlay {
     background: rgba(0, 0, 0, 0.5);
     padding: 40px;
     border-radius: 10px;
-}
-
-.hero h1 {
-    font-size: 60px;
-    font-family: "Didot", serif;
-    font-weight: bold;
-    color: gold;
-}
-
-.hero p {
-    font-size: 24px;
-    font-style: italic;
+  }
+  
+  .overlay h1 {
+    font-size: 50px;
+    color: #fff;
+    margin: 0;
+  }
+  
+  .overlay p {
+    font-size: 22px;
     color: #ddd;
-}
-
-.cta-btn {
+    margin: 10px 0;
+  }
+  
+  .btn {
     display: inline-block;
-    margin-top: 20px;
     padding: 12px 24px;
     font-size: 18px;
-    color: black;
-    background: gold;
     text-decoration: none;
-    border-radius: 5px;
-    transition: background 0.3s ease-in-out;
-}
-
-.cta-btn:hover {
-    background: #b8860b;
-}
-
-/* Intro Section */
-.intro {
+    color: white;
+    background: #b2955a;
+    border-radius: 6px;
+    transition: all 0.3s ease-in-out;
+    margin: 10px;
+  }
+  
+  .btn:hover {
+    background: #8e7b48;
+  }
+  
+  .btn-secondary {
+    background: #555;
+  }
+  
+  .btn-secondary:hover {
+    background: #444;
+  }
+  
+  /* Sections */
+  .section {
+    padding: 80px 20px;
     text-align: center;
-    padding: 60px 20px;
-}
-
-.intro h2 {
-    font-size: 36px;
-    font-family: "Didot", serif;
-    color: #2c2c2c;
-}
-
-.intro p {
-    font-size: 20px;
-    font-style: italic;
-    color: #555;
-}
-
-/* Features Section */
-.features {
+  }
+  
+  .about {
+    background: #fff;
+  }
+  
+  .features {
     background: #f3eee8;
-    padding: 80px 50px;
-}
-
-.feature {
-    text-align: center;
-    max-width: 350px;
-    margin: 0 auto;
-}
-
-.feature h3 {
-    font-size: 24px;
-    font-family: "Didot", serif;
-    color: #2c2c2c;
-    text-transform: uppercase;
-}
-
-.feature p {
-    font-size: 18px;
-    color: #777;
-}
-
-/* Footer */
-footer {
-    text-align: center;
+  }
+  
+  .features-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+    max-width: 900px;
+    margin: auto;
+  }
+  
+  .feature {
+    background: white;
     padding: 20px;
-    background: #2c2c2c;
-    color: gold;
-    font-size: 16px;
-}
+    width: 250px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cta {
+    background: #b2955a;
+    color: white;
+  }
+  
+  .cta a {
+    background: white;
+    color: #b2955a;
+  }
+  
+  .cta a:hover {
+    background: #8e7b48;
+    color: white;
+  }
+  
+  /* Footer */
+  footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+  }

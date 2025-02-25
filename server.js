@@ -59,6 +59,10 @@ app.get("/", async (req, res) => {
     res.render("home.ejs");
 });
 
+app.get("/register", async (req, res) => {
+    res.render("register.ejs");
+})
+
 app.get("/watches/:id", async (req, res) => {
     try {
         const watch = await Watch.findById(req.params.id);
