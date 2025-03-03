@@ -8,6 +8,35 @@ router.get("/register", (req, res) => {
 });
 
 router.post("/register", async (req, res) => {
+    try {
+        const userInDatabase = await User.findOne({ username: req.body.username });
+        if (userInDatabase) {
+            return res.send("Username already taken.");
+        }
+
+        if (req.body.password !== req.body.confirmPassword) {
+            return res.send("Password and Confirm Password must match");
+        }
+
+        const hashedPassword = bcrypt.hashSync(req.body.password, 10);
+        req.body.password = hashedPassword;
+
+        const user = await User.create(req.body);
+
+        req.session.user = { _id: user._id, username: user.username };
+
+        req.session.save(() => {
+            console.log("User session saved:", req.session.user);
+            return res.redirect("/watches");
+        });
+
+    } catch (err) {
+        console.error("Error registering user:", err);
+        res.redirect("/register");
+    }
+});
+
+/*router.post("/register", async (req, res) => {
     const userInDatabase = await User.findOne({ username: req.body.username });
     if (userInDatabase) {
         return res.send("Username already taken.");
@@ -22,7 +51,7 @@ router.post("/register", async (req, res) => {
     req.session.user = { username: user.username };
 
     res.redirect("/watches");
-});
+});*/
 
 router.get("/login", (req, res) => {
     res.render("auth/login")
