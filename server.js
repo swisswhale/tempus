@@ -89,10 +89,6 @@ app.get("/", async (req, res) => {
     res.render("home.ejs");
 });
 
-//app.get("/register", async (req, res) => {
-//    res.render("register.ejs");
-//})
-
 app.get("/watches/:id", async (req, res) => {
     try {
         const watch = await Watch.findById(req.params.id);
@@ -106,9 +102,6 @@ app.get("/watches/:id", async (req, res) => {
     }
 });
 
-
-
-// Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);

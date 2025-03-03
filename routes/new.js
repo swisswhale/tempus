@@ -27,7 +27,6 @@ const movement = require("../data/movement/movement.js");
 const watchFunctions = require("../data/movement/functions.js");
 const specialFeatures = require("../data/other.js");
 
-// GET route to render form
 router.get("/new", (req, res) => {
     res.render("new", {
         brands,
@@ -44,16 +43,16 @@ router.get("/new", (req, res) => {
     });
 });
 
-// POST route
 router.post("/watches", async (req, res) => {
     try {
+        console.log("Session user:", req.session.user); // Debugging
+
         if (!req.session.user) {
             return res.status(401).send("Unauthorized: Please log in.");
         }
 
         req.body.user = req.session.user._id; // Ensure the user is assigned
 
-        // Convert checkboxes into arrays
         req.body.watchFunctions = req.body["watchFunctions[]"]
             ? Array.isArray(req.body["watchFunctions[]"])
                 ? req.body["watchFunctions[]"]
